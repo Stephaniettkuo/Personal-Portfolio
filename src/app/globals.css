@@ -1,35 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
 @import "tailwindcss";
 
 :root {
-  --moonlight: #F0ECDD;
-  --frost-blue: #B8C5E3;
-  --steel: #495B7D;
-  --storm: #23354D;
-  --oxford: #02122F;
+  --biolume-blue: #4fc3f7;
+  --biolume-cyan: #00e5ff;
+  --ocean-void: #050d1a;
+  --pearl: #e8f4f8;
+  --pearl-dim: #a8c8d8;
+  --pearl-faint: #4a7a95;
+  --glass-bg: rgba(10, 31, 61, 0.45);
+  --glass-border: rgba(79, 195, 247, 0.18);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  min-height: 100vh;
-  font-family: Inter, sans-serif;
-  color: white;
-  background:
-    radial-gradient(circle at top left,
-      rgba(184, 197, 227, .15),
-      transparent 35%),
-    linear-gradient(180deg,
-      #02122F 0%,
-      #0D254A 45%,
-      #1B467A 100%);
+  background-color: var(--ocean-void);
+  color: var(--pearl);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
   overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--ocean-void); }
+::-webkit-scrollbar-thumb { background: var(--biolume-blue); border-radius: 2px; }
+
+.font-display { font-family: 'Cormorant Garamond', serif; }
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+@keyframes drift {
+  0%   { transform: translateY(0) translateX(0); }
+  33%  { transform: translateY(-8px) translateX(4px); }
+  66%  { transform: translateY(4px) translateX(-4px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+.animate-float      { animation: float 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-drift      { animation: drift 8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

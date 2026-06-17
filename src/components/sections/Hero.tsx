@@ -1,59 +1,171 @@
-import GlassCard from "../ui/GlassCard";
+'use client';
+
+import { motion } from 'framer-motion';
+import { Sparkles } from 'lucide-react';
+import OceanCanvas from '@/components/ui/OceanCanvas';
+import MusicPlayer from '@/components/ui/MusicPlayer';
+
+const up = (delay = 0) => ({
+  initial: { opacity: 0, y: 28 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.85, delay, ease: [0.25, 0.1, 0.25, 1] as [number,number,number,number] },
+});
+
+const SHAFTS = [
+  { left:'28%', skew:'-7deg',  delay:'0s',   opacity:0.07 },
+  { left:'48%', skew:' 2deg',  delay:'0.8s', opacity:0.11 },
+  { left:'63%', skew:' 6deg',  delay:'0.4s', opacity:0.06 },
+  { left:'18%', skew:'-4deg',  delay:'1.4s', opacity:0.04 },
+];
 
 export default function Hero() {
-    return (
-        <section
-            className="
-            min-h-screen
-            flex
-            items-center
-            justify-center
-            gap-16
-            px-10
-            "
-        >
+  return (
+    <section
+      id="hero"
+      style={{ position:'relative', width:'100%', height:'100vh', display:'flex', alignItems:'center', overflow:'hidden' }}
+    >
+      {/* 
+        PUT YOUR GENERATED IMAGE IN: public/images/hero-bg.png
+        Then uncomment the line below and delete the gradient div beneath it
+      */}
+      <img src="/images/hero-bg.png" alt="" aria-hidden style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', zIndex:0 }}/> 
 
-            {/*LEFT SIDE*/}
-            <div>
-                <p className="uppercase tracking-[0.3em] text-slate-300">
-                    hello, i'm
-                </p>
+      
 
-                <h1
-                    className="
-                 text-7xl
-                font-serif
-                mt-4
-            "
-                >
-                    Stephanie Kuo
-                </h1>
+      {/* Dark overlay so text stays legible over the photo */}
+      <div style={{ position:'absolute', inset:0, zIndex:1, background:'rgba(4,12,24,0.45)' }}/>
 
-                <p className="mt-6 text-slate-300">
-                    student • builder • researcher
-                </p>
-            </div>
+      {/* ── Light shafts ── */}
+      {SHAFTS.map((s, i) => (
+        <div key={i} className="animate-pulse-glow" style={{
+          position:'absolute', top:0, left:s.left, zIndex:1, pointerEvents:'none',
+          width:'110px', height:'65%',
+          background:`linear-gradient(180deg, rgba(79,195,247,${s.opacity}) 0%, transparent 100%)`,
+          transform:`translateX(-50%) skewX(${s.skew})`,
+          filter:'blur(22px)',
+          animationDelay: s.delay,
+        }}/>
+      ))}
 
-            {/*RIGHT SIDE*/}
-            <GlassCard className="w-[320px] p-6">
-                <div
-                    className="
-            h-[250px]
-            rounded-3xl
-            bg-gradient-to-br
-            from-blue-200
-            to-slate-700
-            "
-                />
+      {/* ── Particles + bubbles ── */}
+      <OceanCanvas />
 
-                <h3 className="mt-4 text-2xl font-serif">
-                    Moonlight
-                </h3>
+      {/* ── Main content ── */}
+      <div style={{
+        position:'relative', zIndex:10, width:'100%', maxWidth:'1280px',
+        margin:'0 auto', padding:'0 2.5rem',
+        display:'flex', alignItems:'center', justifyContent:'space-between',
+      }}>
 
-                <p className="opacity-60">
-                    Now Playing
-                </p>
-            </GlassCard>
-        </section>
-    );
+        {/* Left */}
+        <div style={{ flex:1, maxWidth:'540px' }}>
+
+          {/* Decorative moon */}
+          <motion.div {...up(0.25)} style={{ marginBottom:'1.4rem' }}>
+            <svg viewBox="0 0 40 40" className="animate-float" style={{ width:'38px', height:'38px', animationDelay:'0.8s' }}>
+              <path d="M20 8 Q27 14 27 20 Q27 26 20 32 Q13 26 13 20 Q13 14 20 8Z"
+                fill="none" stroke="rgba(79,195,247,0.55)" strokeWidth="0.9"/>
+              <circle cx="20" cy="20" r="4.5" fill="none" stroke="rgba(79,195,247,0.35)" strokeWidth="0.5"/>
+              {[0,45,90,135,180,225,270,315].map((a,i)=>(
+                <line key={i}
+                  x1={20+Math.cos(a*Math.PI/180)*8} y1={20+Math.sin(a*Math.PI/180)*8}
+                  x2={20+Math.cos(a*Math.PI/180)*11} y2={20+Math.sin(a*Math.PI/180)*11}
+                  stroke="rgba(79,195,247,0.25)" strokeWidth="0.7"/>
+              ))}
+            </svg>
+          </motion.div>
+
+          {/* hello i'm */}
+          <motion.p {...up(0.38)} className="font-display" style={{
+            fontSize:'1.45rem', fontStyle:'italic', fontWeight:300,
+            color:'var(--pearl-dim)', marginBottom:'0.4rem',
+          }}>
+            hello, i&apos;m
+          </motion.p>
+
+          {/* Name */}
+          <motion.h1 {...up(0.52)} className="font-display" style={{
+            fontSize:'clamp(2.6rem, 6.5vw, 4.8rem)', fontWeight:400,
+            textTransform:'uppercase', letterSpacing:'0.11em', lineHeight:1,
+            color:'var(--pearl)', marginBottom:'1.1rem',
+            textShadow:'0 0 50px rgba(79,195,247,0.18)',
+          }}>
+            Stephanie Kuo
+          </motion.h1>
+
+          {/* Roles */}
+          <motion.p {...up(0.66)} style={{
+            fontSize:'0.85rem', letterSpacing:'0.28em', textTransform:'uppercase',
+            color:'var(--pearl-dim)', fontFamily:'Inter,sans-serif', fontWeight:300,
+            marginBottom:'1.1rem',
+          }}>
+            student &nbsp;•&nbsp; builder &nbsp;•&nbsp; researcher
+          </motion.p>
+
+          {/* Tagline */}
+          <motion.p {...up(0.80)} className="font-display" style={{
+            fontSize:'1.05rem', fontStyle:'italic', fontWeight:300,
+            lineHeight:1.65, color:'var(--pearl-faint)',
+            maxWidth:'370px', marginBottom:'2.2rem',
+          }}>
+            exploring technology, design, and curiosity
+            <br/>to build meaningful impact.
+          </motion.p>
+
+          {/* CTA */}
+          <motion.div {...up(0.94)}>
+            <button
+              style={{
+                display:'flex', alignItems:'center', gap:'0.6rem',
+                padding:'0.7rem 1.8rem', borderRadius:'9999px',
+                background:'transparent', border:'1px solid rgba(79,195,247,0.38)',
+                color:'var(--pearl)', fontFamily:'Inter,sans-serif',
+                fontSize:'0.75rem', letterSpacing:'0.18em', textTransform:'uppercase',
+                fontWeight:300, cursor:'pointer',
+                boxShadow:'0 0 18px rgba(79,195,247,0.08)',
+                transition:'all 0.3s',
+              }}
+              onMouseEnter={e=>{
+                e.currentTarget.style.background='rgba(79,195,247,0.1)';
+                e.currentTarget.style.borderColor='rgba(79,195,247,0.65)';
+                e.currentTarget.style.boxShadow='0 0 28px rgba(79,195,247,0.22)';
+              }}
+              onMouseLeave={e=>{
+                e.currentTarget.style.background='transparent';
+                e.currentTarget.style.borderColor='rgba(79,195,247,0.38)';
+                e.currentTarget.style.boxShadow='0 0 18px rgba(79,195,247,0.08)';
+              }}
+            >
+              Explore My World
+              <Sparkles size={13} style={{ color:'var(--biolume-blue)' }}/>
+            </button>
+          </motion.div>
+        </div>
+
+        {/* Right: music player */}
+        <div style={{ flexShrink:0, marginLeft:'2.5rem' }}>
+          <MusicPlayer/>
+        </div>
+      </div>
+
+      {/* Bottom fade */}
+      <div style={{
+        position:'absolute', bottom:0, left:0, right:0, height:'7rem',
+        zIndex:10, pointerEvents:'none',
+        background:'linear-gradient(0deg, #040c18 0%, transparent 100%)',
+      }}/>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:2.2, duration:1 }}
+        style={{ position:'absolute', bottom:'1.75rem', left:'50%', transform:'translateX(-50%)', zIndex:10, display:'flex', flexDirection:'column', alignItems:'center', gap:'0.4rem' }}
+      >
+        <span style={{ fontSize:'0.6rem', letterSpacing:'0.3em', textTransform:'uppercase', color:'var(--pearl-faint)', fontFamily:'Inter,sans-serif' }}>scroll</span>
+        <motion.div
+          animate={{ y:[0,7,0] }} transition={{ duration:1.5, repeat:Infinity, ease:'easeInOut' }}
+          style={{ width:'1px', height:'1.8rem', background:'linear-gradient(180deg,var(--biolume-blue),transparent)' }}
+        />
+      </motion.div>
+    </section>
+  );
 }
