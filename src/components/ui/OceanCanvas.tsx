@@ -13,7 +13,7 @@ interface Bubble {
   opacity: number; wobble: number; wobbleSpeed: number; wobbleOffset: number;
 }
 
-const COLORS = ['rgba(79,195,247', 'rgba(0,229,255', 'rgba(125,211,252', 'rgba(255,255,255'];
+const COLORS = ['rgba(60,142,195', 'rgba(0,229,255', 'rgba(125,211,252', 'rgba(255,255,255'];
 
 export default function OceanCanvas() {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -86,7 +86,7 @@ export default function OceanCanvas() {
         if (b.y < -20) { b.y = canvas.height + 10; b.x = Math.random() * canvas.width; }
         const bx = b.x + Math.sin(b.wobble + b.wobbleOffset) * 14;
         ctx.beginPath(); ctx.arc(bx, b.y, b.size, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(79,195,247,${b.opacity})`; ctx.lineWidth = 0.7; ctx.stroke();
+        ctx.strokeStyle = `rgba(60,142,195,${b.opacity})`; ctx.lineWidth = 0.7; ctx.stroke();
         ctx.beginPath(); ctx.arc(bx - b.size * 0.3, b.y - b.size * 0.3, b.size * 0.22, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255,255,255,${b.opacity * 0.5})`; ctx.fill();
       }
@@ -102,6 +102,7 @@ export default function OceanCanvas() {
   return (
     <canvas
       ref={ref}
+      aria-hidden
       style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 2 }}
     />
   );

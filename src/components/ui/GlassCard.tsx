@@ -1,24 +1,20 @@
-// frosted glass effect 
+'use client';
 
 export default function GlassCard({
     children,
+    liquid = false,
     className = "",
-}:{
+    style,
+}: {
     children: React.ReactNode;
+    liquid?: boolean;
     className?: string;
-}){
-    return(
+    style?: React.CSSProperties;
+}) {
+    return (
         <div
-
-        className ={`
-        bg-white/5
-        backdrop-blue-xl
-        border
-        border-white/10
-        rounded-[40px]
-        shadow-[0_8px_50px_rgba(0,0,0.25)]
-        ${className}
-        `}
+            className={`${liquid ? 'glass-liquid' : 'glass'} ${className}`}
+            style={{ borderRadius: '1.5rem', ...style }}
         >
             {children}
         </div>

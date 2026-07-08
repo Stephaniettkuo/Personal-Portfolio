@@ -24,9 +24,9 @@ export default function Navbar() {
                 position: 'fixed', top: '1.5rem', left: '2.5rem', right: '2.5rem', zIndex: 50,
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                 padding: '0.65rem 1.75rem', borderRadius: '1.5rem',
-                background: scrolled ? 'rgba(0, 61, 158, 0.8)' : 'rgba(93, 137, 171, 0.5)',
+                background: scrolled ? 'rgba(4, 16, 31, 0.82)' : 'var(--glass-bg)',
                 backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
-                border: '5px solid rgba(79,195,247,0.12)',
+                border: '1px solid var(--glass-border)',
                 boxShadow: scrolled ? '0 8px 32px rgba(0,0,0,0.5)' : 'none',
                 transition: 'background 0.4s, box-shadow 0.4s',
             }}
@@ -42,6 +42,7 @@ export default function Navbar() {
                 {LINKS.map(link => (
                     <li key={link}>
                         <a
+                            data-cursor-hover
                             href={`#${link.toLowerCase()}`}
                             style={{ fontSize: '0.82rem', letterSpacing: '0.04em', color: 'var(--pearl-dim)', fontFamily: 'Inter,sans-serif', fontWeight: 300, textDecoration: 'none', transition: 'color 0.25s' }}
                             onMouseEnter={e => (e.currentTarget.style.color = 'var(--pearl)')}
@@ -55,8 +56,8 @@ export default function Navbar() {
 
             {/* Icons */}
             <div style={{ display: 'flex', gap: '0.6rem' }}>
-                <button style={{ background: 'none', border: 'none', cursor: 'pointer', opacity: 0.55, color: 'var(--pearl)' }}><Moon size={15} /></button>
-                <button style={{ background: 'none', border: 'none', cursor: 'pointer', opacity: 0.55, color: 'var(--biolume-blue)' }}><Sparkles size={15} /></button>
+                <button data-cursor-hover aria-label="Toggle theme" style={{ background: 'none', border: 'none', opacity: 0.55, color: 'var(--pearl)' }}><Moon size={15} aria-hidden /></button>
+                <button data-cursor-hover aria-label="Toggle effects" style={{ background: 'none', border: 'none', opacity: 0.55, color: 'var(--biolume-blue)' }}><Sparkles size={15} aria-hidden /></button>
             </div>
         </motion.nav>
     );

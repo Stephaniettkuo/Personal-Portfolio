@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { MotionConfig } from "framer-motion";
 import "./globals.css";
+import CustomCursor from "@/components/ui/CustomCursor";
+import SmoothScroll from "@/components/ui/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "Stephanie Kuo",
@@ -13,7 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <MotionConfig reducedMotion="user">
+          <CustomCursor />
+          <SmoothScroll />
+          {children}
+        </MotionConfig>
+      </body>
     </html>
   );
 }
