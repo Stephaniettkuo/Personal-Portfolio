@@ -42,8 +42,9 @@ of things i love (maybe have a simple map and have points of places i have been 
 4) i want the wave line in the journeys page slightly thicker  (and also get rid of the divider line between 
 the quote and navigation options)
 5) you know those ui folders thing, i think i can have one for each that opens up a gallery of pictures
-
-
+6) the whole gallery appears late
+7) when the screen side changes, the galley looks a bit wonky
+8) my glitters are now at the corner of the pages...  bruh
 
 pictures i need
 

@@ -207,7 +207,7 @@ export default function Hero() {
                             }}
                             transition={{ duration: 0.3 }}
                         >
-                            Explore My World
+                            Developing in Progress
                             <Sparkles size={13} style={{ color: 'var(--biolume-blue)' }} />
                         </motion.button>
                     </motion.div>
