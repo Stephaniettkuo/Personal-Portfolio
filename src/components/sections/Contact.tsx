@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Mail } from 'lucide-react';
 import GlassCard from '@/components/ui/GlassCard';
+import JellyfishLoader from '@/components/ui/JellyfishLoader';
 
 // lucide-react dropped brand/logo icons — small inline glyphs instead of a new dependency
 const GithubGlyph = () => (
@@ -131,8 +132,9 @@ export default function Contact() {
                                     opacity: status === 'submitting' ? 0.6 : 1,
                                 }}
                             >
-                                {status === 'submitting' ? 'Sending…' : 'Send Message'}
-                                <Send size={14} aria-hidden />
+                                {status === 'submitting'
+                                    ? <><JellyfishLoader size={16} /> Sending…</>
+                                    : <>Send Message <Send size={14} aria-hidden /></>}
                             </motion.button>
 
                             {status === 'success' && (

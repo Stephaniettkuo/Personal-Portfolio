@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { Sparkles } from 'lucide-react';
 import OceanCanvas from '@/components/ui/OceanCanvas';
-import MusicPlayer from '@/components/ui/MusicPlayer';
+import WaveDivider from '@/components/ui/WaveDivider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -140,21 +140,6 @@ export default function Hero() {
                 {/* Left */}
                 <div style={{ flex: '1 1 320px', maxWidth: '560px' }}>
 
-                    {/* Decorative moon */}
-                    <motion.div {...up(0.25)} style={{ marginBottom: '1.4rem' }}>
-                        <svg viewBox="0 0 40 40" aria-hidden className="animate-float" style={{ width: '38px', height: '38px', animationDelay: '0.8s' }}>
-                            <path d="M20 8 Q27 14 27 20 Q27 26 20 32 Q13 26 13 20 Q13 14 20 8Z"
-                                fill="none" stroke="rgba(60,142,195,0.55)" strokeWidth="0.9" />
-                            <circle cx="20" cy="20" r="4.5" fill="none" stroke="rgba(60,142,195,0.35)" strokeWidth="0.5" />
-                            {[0, 45, 90, 135, 180, 225, 270, 315].map((a, i) => (
-                                <line key={i}
-                                    x1={20 + Math.cos(a * Math.PI / 180) * 8} y1={20 + Math.sin(a * Math.PI / 180) * 8}
-                                    x2={20 + Math.cos(a * Math.PI / 180) * 11} y2={20 + Math.sin(a * Math.PI / 180) * 11}
-                                    stroke="rgba(60,142,195,0.25)" strokeWidth="0.7" />
-                            ))}
-                        </svg>
-                    </motion.div>
-
                     {/* hello i'm */}
                     <motion.p {...up(0.38)} className="font-display" style={{
                         fontSize: '1.45rem', fontStyle: 'italic', fontWeight: 300,
@@ -208,7 +193,7 @@ export default function Hero() {
                             style={{
                                 display: 'flex', alignItems: 'center', gap: '0.6rem',
                                 padding: '0.7rem 1.8rem', borderRadius: '9999px',
-                                background: 'transparent', border: '1px solid rgba(60,142,195,0.38)',
+                                background: 'rgba(60,142,195,0)', border: '1px solid rgba(60,142,195,0.38)',
                                 color: 'var(--pearl)', fontFamily: 'Inter,sans-serif',
                                 fontSize: '0.75rem', letterSpacing: '0.18em', textTransform: 'uppercase',
                                 fontWeight: 300,
@@ -227,19 +212,10 @@ export default function Hero() {
                         </motion.button>
                     </motion.div>
                 </div>
-
-                {/* Right: music player */}
-                <div style={{ flexShrink: 0, marginLeft: '2.5rem' }}>
-                    <MusicPlayer />
-                </div>
             </div>
 
-            {/* Bottom fade */}
-            <div style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0, height: '7rem',
-                zIndex: 10, pointerEvents: 'none',
-                background: 'linear-gradient(0deg, #040c18 0%, transparent 100%)',
-            }} />
+            {/* Divider into About — animated waves + rising bubbles instead of a flat fade */}
+            <WaveDivider />
 
             {/* Scroll indicator */}
             <motion.div

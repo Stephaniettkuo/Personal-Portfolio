@@ -15,7 +15,16 @@ interface Bubble {
 
 const COLORS = ['rgba(60,142,195', 'rgba(0,229,255', 'rgba(125,211,252', 'rgba(255,255,255'];
 
-export default function OceanCanvas() {
+export default function OceanCanvas({
+  particleCount = 100,
+  bubbleCount = 16,
+  maxOpacity = 1,
+}: {
+  particleCount?: number;
+  bubbleCount?: number;
+  /** Scales every particle/bubble's opacity — use < 1 for a calmer, quieter field. */
+  maxOpacity?: number;
+}) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -29,26 +38,32 @@ export default function OceanCanvas() {
     let bubbles: Bubble[] = [];
 
     const init = () => {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // Size the drawing buffer to the canvas's own rendered dimensions, not
+      // the viewport. This canvas is typically `inset: 0` of whatever wrapper
+      // it's placed in — if that wrapper is taller than one screen (like
+      // About's, which spans the full section height), sizing to
+      // window.innerHeight left everything below the first screen blank,
+      // since particles were only ever distributed within that first slice.
+      canvas.width  = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
 
-      particles = Array.from({ length: 100 }, () => ({
+      particles = Array.from({ length: particleCount }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 2 + 0.4,
         speedX: (Math.random() - 0.5) * 0.25,
         speedY: (Math.random() - 0.5) * 0.18,
-        opacity: Math.random() * 0.6 + 0.1,
+        opacity: (Math.random() * 0.6 + 0.1) * maxOpacity,
         opacitySpeed: (Math.random() * 0.006 + 0.002) * (Math.random() > 0.5 ? 1 : -1),
         color: COLORS[Math.floor(Math.random() * COLORS.length)],
       }));
 
-      bubbles = Array.from({ length: 16 }, () => ({
+      bubbles = Array.from({ length: bubbleCount }, () => ({
         x: Math.random() * canvas.width,
         y: canvas.height + Math.random() * 400,
         size: Math.random() * 7 + 2,
         speed: Math.random() * 0.5 + 0.25,
-        opacity: Math.random() * 0.35 + 0.08,
+        opacity: (Math.random() * 0.35 + 0.08) * maxOpacity,
         wobble: 0,
         wobbleSpeed: Math.random() * 0.025 + 0.008,
         wobbleOffset: Math.random() * Math.PI * 2,
@@ -95,9 +110,14 @@ export default function OceanCanvas() {
     };
 
     init(); draw();
-    window.addEventListener('resize', init);
-    return () => { window.removeEventListener('resize', init); cancelAnimationFrame(id); };
-  }, []);
+
+    // ResizeObserver instead of a window-resize listener — it also catches
+    // content-driven size changes (e.g. this canvas's container growing once
+    // images below it load), not just viewport resizes.
+    const observer = new ResizeObserver(() => init());
+    observer.observe(canvas);
+    return () => { observer.disconnect(); cancelAnimationFrame(id); };
+  }, [particleCount, bubbleCount, maxOpacity]);
 
   return (
     <canvas

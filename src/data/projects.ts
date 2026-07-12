@@ -5,10 +5,13 @@ export interface Project {
     description: string;
     tags: string[];
     image?: string;
+    demoUrl?: string;
+    sourceUrl?: string;
 }
 
-// PLACEHOLDER projects — replace with Stephanie's actual work, and drop real
-// screenshots in public/images/projects/ (see ProjectCard.tsx placeholder note)
+// PLACEHOLDER projects — replace with Stephanie's actual work, drop real
+// screenshots in public/images/projects/, and swap the '#' demo/source links
+// for real ones (see ProjectCard.tsx placeholder note)
 export const PROJECTS: Project[] = [
     {
         id: 'project-one',
@@ -16,6 +19,7 @@ export const PROJECTS: Project[] = [
         blurb: 'A one-line summary of what this project does.',
         description: 'PLACEHOLDER — a longer paragraph describing the problem, the approach, and the outcome of this project.',
         tags: ['React', 'TypeScript'],
+        demoUrl: '#', sourceUrl: '#',
     },
     {
         id: 'project-two',
@@ -23,6 +27,7 @@ export const PROJECTS: Project[] = [
         blurb: 'A one-line summary of what this project does.',
         description: 'PLACEHOLDER — a longer paragraph describing the problem, the approach, and the outcome of this project.',
         tags: ['Python', 'Machine Learning'],
+        demoUrl: '#', sourceUrl: '#',
     },
     {
         id: 'project-three',
@@ -30,6 +35,7 @@ export const PROJECTS: Project[] = [
         blurb: 'A one-line summary of what this project does.',
         description: 'PLACEHOLDER — a longer paragraph describing the problem, the approach, and the outcome of this project.',
         tags: ['Next.js', 'Design'],
+        demoUrl: '#', sourceUrl: '#',
     },
     {
         id: 'project-four',
@@ -37,5 +43,6 @@ export const PROJECTS: Project[] = [
         blurb: 'A one-line summary of what this project does.',
         description: 'PLACEHOLDER — a longer paragraph describing the problem, the approach, and the outcome of this project.',
         tags: ['Node.js', 'API'],
+        demoUrl: '#', sourceUrl: '#',
     },
 ];

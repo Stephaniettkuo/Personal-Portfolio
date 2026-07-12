@@ -1,8 +1,12 @@
 'use client';
 
+import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { Compass, FolderKanban, Trophy, Target, Mail } from 'lucide-react';
 import GlassCard from '@/components/ui/GlassCard';
-import Constellation from '@/components/ui/Constellation';
+import ParallaxGallery from '@/components/ui/ParallaxGallery';
+import OceanCanvas from '@/components/ui/OceanCanvas';
 
 const up = (delay = 0) => ({
     initial: { opacity: 0, y: 24 },
@@ -12,28 +16,54 @@ const up = (delay = 0) => ({
 });
 
 const INFO = [
-    { label: 'Based In', value: 'PLACEHOLDER — city, country' },
-    { label: 'Currently', value: 'PLACEHOLDER — role / program' },
-    { label: 'Interests', value: 'PLACEHOLDER — comma, separated, list' },
+    { label: 'Based In', value: 'Austin, Texas, USA' },
+    { label: 'Currently', value: 'Student at University of Texas at Austin' },
+    { label: 'Interests', value: 'placeholder' },
+];
+
+const EXPLORE_LINKS = [
+    { label: 'Journey', href: '/journey', icon: Compass },
+    { label: 'Projects', href: '/projects', icon: FolderKanban },
+    { label: 'Achievements', href: '/achievements', icon: Trophy },
+    { label: 'Goals', href: '/goals', icon: Target },
+    { label: 'Contact', href: '/contact', icon: Mail },
 ];
 
 export default function About() {
     return (
         <section id="about" style={{ position: 'relative', width: '100%', padding: 'clamp(4rem, 10vw, 8rem) clamp(1.5rem, 6vw, 6rem)' }}>
+            {/* Background photo — spans the entire section (not a bounded height),
+                including the gallery/explore-buttons further down. This only works
+                cleanly because OceanCanvas now sizes its drawing buffer to its own
+                rendered height instead of the viewport (see OceanCanvas.tsx) — without
+                that fix, particles would only populate the first screen's worth and
+                the rest of this tall area would read as empty. No overflow:hidden on
+                the outer section itself — that's what was clipping the gallery before.
+                Gradient starts and ends as solid --ocean-void, matching Hero's
+                WaveDivider fill at the top and fading out again at the very bottom,
+                so both seams disappear. */}
+            <div aria-hidden style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 0 }}>
+                <Image
+                    src="/images/aboutme-bg.jpg" alt="" fill priority={false}
+                    style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.62, filter: 'saturate(0.82)' }}
+                />
+                <div style={{
+                    position: 'absolute', inset: 0,
+                    background: 'linear-gradient(180deg, var(--ocean-void) 0%, rgba(4,16,31,0.5) 14%, rgba(4,16,31,0.28) 45%, var(--ocean-void) 100%)',
+                }} />
+                <OceanCanvas particleCount={22} bubbleCount={3} maxOpacity={0.55} />
+            </div>
+
             <div style={{
+                position: 'relative', zIndex: 10,
                 maxWidth: '1180px', margin: '0 auto',
                 display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'clamp(2.5rem, 6vw, 5rem)',
             }}>
-                {/* Left: mood illustration + constellation accent */}
+                {/* Left: headshot */}
                 <motion.div {...up(0)} style={{ flex: '1 1 320px', maxWidth: '440px' }}>
                     <GlassCard liquid style={{ aspectRatio: '4 / 5', padding: '1rem', position: 'relative', overflow: 'hidden' }}>
-                        {/* PLACEHOLDER: replace with real mood/ocean photo or illustration — see public/images/about/ */}
-                        <div style={{
-                            position: 'absolute', inset: '1rem', borderRadius: '1rem',
-                            background: 'radial-gradient(circle at 30% 20%, rgba(111,184,232,0.25), transparent 60%), linear-gradient(160deg, var(--ocean-void), rgba(20,50,80,0.6))',
-                        }} />
-                        <div style={{ position: 'absolute', inset: '18%' }}>
-                            <Constellation />
+                        <div style={{ position: 'absolute', inset: '1rem', borderRadius: '1rem', overflow: 'hidden' }}>
+                            <Image src="/images/photos/headblue.png" alt="Stephanie Kuo" fill style={{ objectFit: 'cover' }} />
                         </div>
                     </GlassCard>
                 </motion.div>
@@ -85,6 +115,45 @@ export default function About() {
                     </motion.div>
                 </div>
             </div>
+
+            {/* Scroll-parallax image gallery */}
+            <motion.div {...up(0.42)} style={{ position: 'relative', zIndex: 10, maxWidth: '1180px', margin: '5rem auto 0' }}>
+                <ParallaxGallery />
+            </motion.div>
+
+            {/* Explore more — glowy glass buttons to the rest of the site */}
+            <motion.div {...up(0.42)} style={{ position: 'relative', zIndex: 10, maxWidth: '1180px', margin: '4rem auto 0', textAlign: 'center' }}>
+                <p style={{
+                    fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase',
+                    color: 'var(--pearl-faint)', fontFamily: 'Inter, sans-serif', marginBottom: '1.2rem',
+                }}>
+                    explore more
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1.25rem' }}>
+                    {EXPLORE_LINKS.map(({ label, href, icon: Icon }) => (
+                        <Link key={href} href={href} data-cursor-hover style={{ textDecoration: 'none' }}>
+                            <motion.div whileHover={{ y: -5, scale: 1.03 }} transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}>
+                                <GlassCard liquid style={{
+                                    padding: '2rem 1.25rem', display: 'flex', flexDirection: 'column',
+                                    alignItems: 'center', gap: '0.85rem',
+                                    boxShadow: '0 0 26px rgba(60,142,195,0.22)',
+                                }}>
+                                    <div style={{
+                                        width: '52px', height: '52px', borderRadius: '50%',
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        background: 'rgba(60,142,195,0.14)', boxShadow: '0 0 18px rgba(111,184,232,0.3)',
+                                    }}>
+                                        <Icon size={24} aria-hidden style={{ color: 'var(--biolume-cyan)' }} />
+                                    </div>
+                                    <span style={{ fontSize: '0.88rem', letterSpacing: '0.04em', color: 'var(--pearl)', fontFamily: 'Inter, sans-serif' }}>
+                                        {label}
+                                    </span>
+                                </GlassCard>
+                            </motion.div>
+                        </Link>
+                    ))}
+                </div>
+            </motion.div>
         </section>
     );
 }

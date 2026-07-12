@@ -82,6 +82,23 @@ body {
   outline-offset: 2px;
 }
 
+.gallery-panel .gallery-image,
+.gallery-panel .gallery-scrim,
+.gallery-panel .gallery-caption {
+  transition: opacity 0.4s ease;
+}
+.gallery-panel .gallery-scrim,
+.gallery-panel .gallery-caption {
+  opacity: 0;
+}
+.gallery-panel:hover .gallery-image {
+  opacity: 0.82;
+}
+.gallery-panel:hover .gallery-scrim,
+.gallery-panel:hover .gallery-caption {
+  opacity: 1;
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-10px); }
@@ -95,6 +112,10 @@ body {
   33%  { transform: translateY(-8px) translateX(4px); }
   66%  { transform: translateY(4px) translateX(-4px); }
   100% { transform: translateY(0) translateX(0); }
+}
+@keyframes wave-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 .animate-float      { animation: float 6s ease-in-out infinite; }
