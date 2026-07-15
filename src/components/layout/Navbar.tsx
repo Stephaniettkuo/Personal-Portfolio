@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { Moon, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
+import { Moon, Sparkles, Menu, X } from 'lucide-react';
 
 // Everything except Home/About is its own route, so "active" just tracks the
 // current path. Home and About both live on "/" though (Hero and the About
@@ -36,6 +37,15 @@ export default function Navbar() {
     const ambienceX = useSpring(ambienceTarget, { stiffness: 220, damping: 24 });
 
     const [homeSection, setHomeSection] = useState<'hero' | 'about'>('hero');
+    // Starts false to match the server-rendered output — the real check
+    // happens post-mount, same hydration-safe pattern used throughout this
+    // codebase (CustomCursor, JellyfishOrb, Journey's isDesktop, etc.).
+    const [isCompact, setIsCompact] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+    // The dropdown portals into document.body (see below) — that needs
+    // `document`, which doesn't exist during SSR, same hydration-safe pattern
+    // as GalleryLightbox's own portal.
+    const [mounted, setMounted] = useState(false);
 
     const activeIndex = pathname === '/'
         ? (homeSection === 'about' ? 1 : 0)
@@ -46,6 +56,30 @@ export default function Navbar() {
         window.addEventListener('scroll', fn);
         fn();
         return () => window.removeEventListener('scroll', fn);
+    }, []);
+
+    // Below this width the 7-link horizontal row starts overflowing the nav
+    // bar, so it collapses into a hamburger + dropdown instead. Matches
+    // JellyfishOrb's own breakpoint so the whole page shifts into "compact
+    // mode" together.
+    useEffect(() => {
+        const mq = window.matchMedia('(max-width: 1024px)');
+        const update = () => setIsCompact(mq.matches);
+        update();
+        mq.addEventListener('change', update);
+        return () => mq.removeEventListener('change', update);
+    }, []);
+
+    // Close the mobile menu whenever the route actually changes (clicking a
+    // link inside it should navigate AND close, not leave it hanging open).
+    useEffect(() => {
+        const closeMenu = () => setMenuOpen(false);
+        closeMenu();
+    }, [pathname]);
+
+    useEffect(() => {
+        const markMounted = () => setMounted(true);
+        markMounted();
     }, []);
 
     // Home and About share a pathname, so tell them apart by which section is
@@ -88,6 +122,7 @@ export default function Navbar() {
     const handleMouseLeave = () => spotlightOpacity.set(0);
 
     return (
+    <>
         <motion.nav
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -111,63 +146,130 @@ export default function Navbar() {
                 <Sparkles size={11} aria-hidden style={{ color: 'var(--biolume-blue)', opacity: 0.7 }} />
             </Link>
 
-            {/* Links */}
-            <ul
-                ref={listRef}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '2.4rem', listStyle: 'none' }}
-            >
-                {/* Mouse-follow spotlight */}
-                <motion.div
-                    aria-hidden
-                    style={{
-                        position: 'absolute', bottom: -10, left: spotlightX, opacity: spotlightOpacity,
-                        width: '140px', height: '44px', translateX: '-50%', pointerEvents: 'none',
-                        background: 'radial-gradient(60px 22px at 50% 100%, rgba(111,184,232,0.32), transparent 70%)',
-                    }}
-                />
-                {/* Ambience glow under the active link */}
-                {activeIndex !== -1 && (
+            {/* Links — desktop only. Below 1024px this collapses into the
+                hamburger + dropdown further down, since 7 links plus the logo
+                and icons stop fitting on one row well before typical mobile
+                widths. */}
+            {!isCompact && (
+                <ul
+                    ref={listRef}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '2.4rem', listStyle: 'none' }}
+                >
+                    {/* Mouse-follow spotlight */}
                     <motion.div
                         aria-hidden
                         style={{
-                            position: 'absolute', bottom: -2, left: ambienceX, translateX: '-50%', pointerEvents: 'none',
-                            width: '36px', height: '2px', borderRadius: '9999px',
-                            background: 'linear-gradient(90deg, transparent, var(--biolume-cyan), transparent)',
-                            boxShadow: '0 0 8px rgba(111,184,232,0.9)',
+                            position: 'absolute', bottom: -10, left: spotlightX, opacity: spotlightOpacity,
+                            width: '140px', height: '44px', translateX: '-50%', pointerEvents: 'none',
+                            background: 'radial-gradient(60px 22px at 50% 100%, rgba(111,184,232,0.32), transparent 70%)',
                         }}
                     />
-                )}
+                    {/* Ambience glow under the active link */}
+                    {activeIndex !== -1 && (
+                        <motion.div
+                            aria-hidden
+                            style={{
+                                position: 'absolute', bottom: -2, left: ambienceX, translateX: '-50%', pointerEvents: 'none',
+                                width: '36px', height: '2px', borderRadius: '9999px',
+                                background: 'linear-gradient(90deg, transparent, var(--biolume-cyan), transparent)',
+                                boxShadow: '0 0 8px rgba(111,184,232,0.9)',
+                            }}
+                        />
+                    )}
 
-                {NAV_ITEMS.map((item, i) => {
-                    const isActive = i === activeIndex;
-                    return (
-                        <li key={item.label} ref={el => { linkRefs.current[i] = el; }}>
-                            <Link
-                                data-cursor-hover
-                                href={item.href}
-                                style={{
-                                    position: 'relative', zIndex: 1,
-                                    fontSize: '0.82rem', letterSpacing: '0.04em',
-                                    color: isActive ? 'var(--pearl)' : 'var(--pearl-dim)',
-                                    fontFamily: 'Inter,sans-serif', fontWeight: 300, textDecoration: 'none', transition: 'color 0.25s',
-                                }}
-                                onMouseEnter={e => (e.currentTarget.style.color = 'var(--pearl)')}
-                                onMouseLeave={e => (e.currentTarget.style.color = isActive ? 'var(--pearl)' : 'var(--pearl-dim)')}
-                            >
-                                {item.label}
-                            </Link>
-                        </li>
-                    );
-                })}
-            </ul>
+                    {NAV_ITEMS.map((item, i) => {
+                        const isActive = i === activeIndex;
+                        return (
+                            <li key={item.label} ref={el => { linkRefs.current[i] = el; }}>
+                                <Link
+                                    data-cursor-hover
+                                    href={item.href}
+                                    style={{
+                                        position: 'relative', zIndex: 1,
+                                        fontSize: '0.82rem', letterSpacing: '0.04em',
+                                        color: isActive ? 'var(--pearl)' : 'var(--pearl-dim)',
+                                        fontFamily: 'Inter,sans-serif', fontWeight: 300, textDecoration: 'none', transition: 'color 0.25s',
+                                    }}
+                                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--pearl)')}
+                                    onMouseLeave={e => (e.currentTarget.style.color = isActive ? 'var(--pearl)' : 'var(--pearl-dim)')}
+                                >
+                                    {item.label}
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </ul>
+            )}
 
-            {/* Icons */}
-            <div style={{ display: 'flex', gap: '0.6rem' }}>
+            {/* Icons + hamburger toggle */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                 <button data-cursor-hover aria-label="Toggle theme" style={{ background: 'none', border: 'none', opacity: 0.55, color: 'var(--pearl)' }}><Moon size={15} aria-hidden /></button>
                 <button data-cursor-hover aria-label="Toggle effects" style={{ background: 'none', border: 'none', opacity: 0.55, color: 'var(--biolume-blue)' }}><Sparkles size={15} aria-hidden /></button>
+                {isCompact && (
+                    <button
+                        data-cursor-hover
+                        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={menuOpen}
+                        onClick={() => setMenuOpen(v => !v)}
+                        style={{ background: 'none', border: 'none', color: 'var(--pearl)', display: 'flex', marginLeft: '0.2rem' }}
+                    >
+                        {menuOpen ? <X size={19} aria-hidden /> : <Menu size={19} aria-hidden />}
+                    </button>
+                )}
             </div>
         </motion.nav>
+
+        {/* Mobile dropdown — portaled straight into <body>, not nested inside
+            <motion.nav>. That nav has its own framer-motion entrance animation
+            (initial/animate on y), and framer-motion leaves a transform inline
+            style on the element even once it settles at y:0 — a transformed
+            ancestor creates a new containing block that traps position:fixed
+            descendants inside its own (short) box instead of the real
+            viewport. Same class of bug GalleryLightbox's portal avoids. */}
+        {mounted && createPortal(
+            <AnimatePresence>
+                {isCompact && menuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+                        style={{
+                            position: 'fixed', top: '5.5rem', left: '2.5rem', right: '2.5rem', zIndex: 49,
+                            borderRadius: '1.25rem', padding: '0.6rem',
+                            display: 'flex', flexDirection: 'column', gap: '0.2rem',
+                            background: 'rgba(4, 16, 31, 0.92)',
+                            backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
+                            border: '1.5px solid rgba(111,184,232,0.4)',
+                            boxShadow: '0 8px 32px rgba(0,0,0,0.5), 0 0 24px rgba(60,142,195,0.22)',
+                        }}
+                    >
+                        {NAV_ITEMS.map((item, i) => {
+                            const isActive = i === activeIndex;
+                            return (
+                                <Link
+                                    key={item.label}
+                                    data-cursor-hover
+                                    href={item.href}
+                                    style={{
+                                        padding: '0.85rem 1rem', borderRadius: '0.75rem',
+                                        fontSize: '0.9rem', letterSpacing: '0.04em',
+                                        color: isActive ? 'var(--pearl)' : 'var(--pearl-dim)',
+                                        background: isActive ? 'rgba(60,142,195,0.14)' : 'transparent',
+                                        fontFamily: 'Inter,sans-serif', fontWeight: 300, textDecoration: 'none',
+                                    }}
+                                >
+                                    {item.label}
+                                </Link>
+                            );
+                        })}
+                    </motion.div>
+                )}
+            </AnimatePresence>,
+            document.body
+        )}
+    </>
     );
 }

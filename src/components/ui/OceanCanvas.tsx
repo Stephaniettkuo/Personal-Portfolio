@@ -37,15 +37,21 @@ export default function OceanCanvas({
     let particles: Particle[] = [];
     let bubbles: Bubble[] = [];
 
-    const init = () => {
+    const init = (width: number, height: number) => {
       // Size the drawing buffer to the canvas's own rendered dimensions, not
       // the viewport. This canvas is typically `inset: 0` of whatever wrapper
       // it's placed in — if that wrapper is taller than one screen (like
       // About's, which spans the full section height), sizing to
       // window.innerHeight left everything below the first screen blank,
       // since particles were only ever distributed within that first slice.
-      canvas.width  = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
+      //
+      // width/height come from ResizeObserver's own delivered contentRect
+      // rather than a separate canvas.clientWidth/clientHeight read — reading
+      // those right after mount raced ahead of layout being fully settled and
+      // returned a near-zero size, which is why particles briefly clustered in
+      // the top-left corner (a tiny buffer stretched to fill a much bigger box).
+      canvas.width = width;
+      canvas.height = height;
 
       particles = Array.from({ length: particleCount }, () => ({
         x: Math.random() * canvas.width,
@@ -109,12 +115,19 @@ export default function OceanCanvas({
       id = requestAnimationFrame(draw);
     };
 
-    init(); draw();
+    draw();
 
     // ResizeObserver instead of a window-resize listener — it also catches
     // content-driven size changes (e.g. this canvas's container growing once
-    // images below it load), not just viewport resizes.
-    const observer = new ResizeObserver(() => init());
+    // images below it load), not just viewport resizes. It's also guaranteed
+    // by spec to deliver one initial callback with the real measured size, so
+    // there's no separate "measure once on mount" call racing against layout.
+    const observer = new ResizeObserver(entries => {
+      const entry = entries[0];
+      if (!entry) return;
+      const { width, height } = entry.contentRect;
+      if (width > 0 && height > 0) init(width, height);
+    });
     observer.observe(canvas);
     return () => { observer.disconnect(); cancelAnimationFrame(id); };
   }, [particleCount, bubbleCount, maxOpacity]);
@@ -123,7 +136,6 @@ export default function OceanCanvas({
     <canvas
       ref={ref}
       aria-hidden
-      style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 2 }}
-    />
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 2 }}    />
   );
 }

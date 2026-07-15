@@ -8,6 +8,7 @@ import { useGSAP } from '@gsap/react';
 import { Sparkles } from 'lucide-react';
 import OceanCanvas from '@/components/ui/OceanCanvas';
 import WaveDivider from '@/components/ui/WaveDivider';
+import JellyfishOrb from '@/components/ui/JellyfishOrb';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -130,10 +131,18 @@ export default function Hero() {
             <OceanCanvas />
 
             {/* ── Main content ── */}
+            {/* justifyContent:'center' (not space-between) — the orb is now a
+                real flex sibling of the text instead of being absolutely
+                positioned, so the two center as one group: the gap from the
+                viewport's left edge to the text equals the gap from the orb to
+                the right edge, automatically, at any width. When the orb hides
+                itself below 1024px (see JellyfishOrb.tsx), the text becomes the
+                only child and this same rule centers it alone — no separate
+                mobile-specific alignment override needed. */}
             <div style={{
                 position: 'relative', zIndex: 10, width: '100%', maxWidth: '1280px',
                 margin: '0 auto', padding: 'clamp(1.5rem, 6vw, 6rem)',
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
                 flexWrap: 'wrap', gap: '2rem',
             }}>
 
@@ -212,6 +221,10 @@ export default function Hero() {
                         </motion.button>
                     </motion.div>
                 </div>
+
+                {/* Right: jellyfish video orb — a real flex sibling now, not
+                    absolutely positioned, so it centers as a pair with the text */}
+                <JellyfishOrb />
             </div>
 
             {/* Divider into About — animated waves + rising bubbles instead of a flat fade */}

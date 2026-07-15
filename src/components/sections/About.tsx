@@ -18,7 +18,7 @@ const up = (delay = 0) => ({
 const INFO = [
     { label: 'Based In', value: 'Austin, Texas, USA' },
     { label: 'Currently', value: 'Student at University of Texas at Austin' },
-    { label: 'Interests', value: 'placeholder' },
+    { label: 'Interests', value: 'AI, ML, Web Dev, Robotics, etc' },
 ];
 
 const EXPLORE_LINKS = [
@@ -51,7 +51,7 @@ export default function About() {
                     position: 'absolute', inset: 0,
                     background: 'linear-gradient(180deg, var(--ocean-void) 0%, rgba(4,16,31,0.5) 14%, rgba(4,16,31,0.28) 45%, var(--ocean-void) 100%)',
                 }} />
-                <OceanCanvas particleCount={22} bubbleCount={3} maxOpacity={0.55} />
+                <OceanCanvas particleCount={100} bubbleCount={7} maxOpacity={0.55} />
             </div>
 
             <div style={{
@@ -85,16 +85,25 @@ export default function About() {
                         About Me
                     </motion.h2>
 
-                    <motion.p {...up(0.26)} style={{
+                    <motion.div {...up(0.26)} style={{
                         fontSize: '0.95rem', lineHeight: 1.85, color: 'var(--pearl-dim)',
                         fontFamily: 'Inter, sans-serif', fontWeight: 300, marginBottom: '2rem',
+                        display: 'flex', flexDirection: 'column', gap: '1rem',
                     }}>
-                        {/* PLACEHOLDER bio copy — replace with Stephanie's actual background */}
-                        I&apos;m a student, builder, and researcher who likes taking ideas from a rough
-                        sketch to something people can actually use. I care most about the moments
-                        where technology, design, and curiosity overlap — and I&apos;m always looking
-                        for the next thing worth building.
-                    </motion.p>
+                        <p>Hi! I&apos;m Stephanie, a junior at UT Austin studying Computer Science with a minor in Statistics and Data Science.
+                         My focus is at the intersection of web development, AI, and machine learning, areas where technical depth and
+                        </p>
+                        <p>On the systems side, I&apos;ve built from the ground up: implementing a CPU pipeline and developing a mini operating
+                        system (Pintos) through my computer architecture coursework gave me a strong foundation in how software and hardware
+                        interact at a low level. On the application side, I designed and built this portfolio entirely from scratch using
+                        Next.js, TypeScript, and Tailwind CSS; handling everything from scroll-driven animations with GSAP to custom UI
+                        components and cloud deployment on Vercel.
+                        </p>
+                        <p>
+                        I'm currently expanding into AI and machine learning, working toward certifications in the field and looking for
+                        opportunities where I can apply both my systems knowledge and my ability to build polished, production-ready software.
+                        </p>
+                    </motion.div>
 
                     <motion.div {...up(0.34)}>
                         <GlassCard style={{ padding: '1.25rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
@@ -129,9 +138,15 @@ export default function About() {
                 }}>
                     explore more
                 </p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1.25rem' }}>
+                {/* Flexbox wrap + justifyContent:center instead of CSS grid —
+                    grid shares column tracks across every row, so a lone 5th
+                    item wrapping onto its own row would sit in the first
+                    column (left-aligned) instead of centering. Flexbox centers
+                    each wrapped row's contents independently, so the orphaned
+                    item centers itself automatically. */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.25rem' }}>
                     {EXPLORE_LINKS.map(({ label, href, icon: Icon }) => (
-                        <Link key={href} href={href} data-cursor-hover style={{ textDecoration: 'none' }}>
+                        <Link key={href} href={href} data-cursor-hover style={{ textDecoration: 'none', flex: '1 1 150px', maxWidth: '220px' }}>
                             <motion.div whileHover={{ y: -5, scale: 1.03 }} transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}>
                                 <GlassCard liquid style={{
                                     padding: '2rem 1.25rem', display: 'flex', flexDirection: 'column',
