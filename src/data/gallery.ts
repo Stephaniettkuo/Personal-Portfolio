@@ -81,11 +81,12 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         src: '/images/photos/gallery/photography.jpeg', caption: 'photography',
         slides: [
             { src: '/images/photos/gallery/volunteer.jpeg', caption: 'photography: volunteer photographer' },
-            { src: '/images/photos/gallery/ut.jpeg', caption: 'ocean: aquarium II' },
-            { src: '/images/photos/gallery/lake.jpeg', caption: 'ocean: bioluminescence' },
-            { src: '/images/photos/gallery/moon.jpeg', caption: 'ocean: bioluminescence' },
-            { src: '/images/photos/gallery/snow.jpeg', caption: 'ocean: bioluminescence' },
-            { src: '/images/photos/gallery/squirrel.jpeg', caption: 'ocean: bioluminescence' },
+            { src: '/images/photos/gallery/ut.jpeg', caption: 'photography: burnt orange moon' },
+            { src: '/images/photos/gallery/lake.jpeg', caption: 'photography: ladybird lake' },
+            { src: '/images/photos/gallery/moon.jpeg', caption: 'photography: moon' },
+            { src: '/images/photos/gallery/snow.jpeg', caption: 'photography: snow day' },
+            { src: '/images/photos/gallery/squirrel.jpeg', caption: 'photography: albino squirrel' },
+            { src: '/images/photos/gallery/bird.jpeg', caption: 'photography: birds' },
         ],
     },
     {
@@ -140,10 +141,18 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img15.jpg', caption: 'family',
+        src: '/images/photos/gallery/fam3.jpeg', caption: 'family',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: the cover' },
-            { caption: 'PLACEHOLDER — slide 2: the line I still think about' },
+            { src: '/images/photos/gallery/fam.jpeg', caption: 'family: I' },
+            { src: '/images/photos/gallery/fam1.jpeg', caption: 'family: II' },
+            { src: '/images/photos/gallery/fam4.jpeg', caption: 'family: III' },
+            { src: '/images/photos/gallery/fam5.jpeg', caption: 'family: IV' },
+            { src: '/images/photos/gallery/fam7.jpeg', caption: 'family: V' },
+            { src: '/images/photos/gallery/sis.jpeg', caption: 'family: best and only sister' },
+            { src: '/images/photos/gallery/china1.jpeg', caption: 'family: china fam I' },
+            { src: '/images/photos/gallery/china2.jpeg', caption: 'family: china fam II' },
+            { src: '/images/photos/gallery/taiwan1.jpeg', caption: 'family: taiwan fam I' },
+            { src: '/images/photos/gallery/taiwan2.jpeg', caption: 'family: taiwan fam II' },
         ],
     },
     {
@@ -169,7 +178,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img19.jpg', caption: 'ai',
+        src: '/images/gallery/img19.jpg', caption: 'orgs',
         slides: [
             { caption: 'PLACEHOLDER — slide 1: where it comes from' },
             { caption: 'PLACEHOLDER — slide 2: what it reminds me of' },
