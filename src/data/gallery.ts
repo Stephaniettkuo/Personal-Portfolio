@@ -38,12 +38,12 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/photos/gallery/ocean.jpg', caption: 'ocean',
+        src: '/images/photos/gallery/ocean.png', caption: 'ocean',
         slides: [
-            { src: '/images/photos/gallery/jellyfish1.jpg', caption: 'ocean: jellyfish!! (my fav)' },
+            { src: '/images/photos/gallery/jellyfish1.jpeg', caption: 'ocean: jellyfish!! (my fav)' },
             { src: '/images/photos/gallery/aquarium.jpeg', caption: 'ocean: aquarium I' },
             { src: '/images/photos/gallery/ocean.jpeg', caption: 'ocean: aquarium II' },
-            { src: '/images/photos/gallery/biolum.jpg', caption: 'ocean: bioluminescence' },
+            { src: '/images/photos/gallery/biolum.png', caption: 'ocean: bioluminescence' },
         ],
     },
     {
