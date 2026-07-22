@@ -100,7 +100,7 @@ export default function About() {
                         components and cloud deployment on Vercel.
                         </p>
                         <p>
-                        I'm currently expanding into AI and machine learning, working toward certifications in the field and looking for
+                        I&apos;m currently expanding into AI and machine learning, working toward certifications in the field and looking for
                         opportunities where I can apply both my systems knowledge and my ability to build polished, production-ready software.
                         </p>
                     </motion.div>

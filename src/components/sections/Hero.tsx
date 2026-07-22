@@ -9,6 +9,7 @@ import { Sparkles } from 'lucide-react';
 import OceanCanvas from '@/components/ui/OceanCanvas';
 import WaveDivider from '@/components/ui/WaveDivider';
 import JellyfishOrb from '@/components/ui/JellyfishOrb';
+import HeroSparkleBurst from '@/components/ui/HeroSparkleBurst';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,6 +54,11 @@ export default function Hero() {
     const btnY = useMotionValue(0);
     const btnSpringX = useSpring(btnX, { stiffness: 200, damping: 15, mass: 0.4 });
     const btnSpringY = useSpring(btnY, { stiffness: 200, damping: 15, mass: 0.4 });
+
+    // Bumped on every CTA click to fire a fresh HeroSparkleBurst — a counter
+    // (not a boolean) so repeated clicks each trigger a new burst even while
+    // a previous one is still fading out.
+    const [sparkleTrigger, setSparkleTrigger] = useState(0);
 
     const handlePointerMove = (e: React.MouseEvent<HTMLElement>) => {
         if (!parallaxEnabled || !sectionRef.current) return;
@@ -189,16 +195,20 @@ export default function Hero() {
                         lineHeight: 1.65, color: 'var(--pearl-faint)',
                         maxWidth: '370px', marginBottom: '2.2rem',
                     }}>
-                        exploring technology, design, and curiosity
-                        <br />to build meaningful impact.
+                        diving into technology, design, and curiosity
+                        <br />to build meaningful impact ;)
                     </motion.p>
 
-                    {/* CTA — magnetic hover */}
+                    {/* CTA — magnetic hover; click fires a HeroSparkleBurst
+                        scattered across the whole section (rendered below,
+                        not scoped to the button) rather than a burst
+                        localized to the button itself. */}
                     <motion.div {...up(0.94)}>
                         <motion.button
                             data-cursor-hover
                             onMouseMove={handleBtnMove}
                             onMouseLeave={handleBtnLeave}
+                            onClick={() => setSparkleTrigger(t => t + 1)}
                             style={{
                                 display: 'flex', alignItems: 'center', gap: '0.6rem',
                                 padding: '0.7rem 1.8rem', borderRadius: '9999px',
@@ -226,6 +236,9 @@ export default function Hero() {
                     absolutely positioned, so it centers as a pair with the text */}
                 <JellyfishOrb />
             </div>
+
+            {/* Sparkle burst — scattered across the whole section on CTA click */}
+            <HeroSparkleBurst trigger={sparkleTrigger} />
 
             {/* Divider into About — animated waves + rising bubbles instead of a flat fade */}
             <WaveDivider />
