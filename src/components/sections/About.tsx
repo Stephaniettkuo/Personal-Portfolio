@@ -125,8 +125,36 @@ export default function About() {
                 </div>
             </div>
 
-            {/* Scroll-parallax image gallery */}
-            <motion.div {...up(0.42)} style={{ position: 'relative', zIndex: 10, maxWidth: '1180px', margin: '5rem auto 0' }}>
+            {/* "Things I Love" heading — its own low-threshold fade-in,
+                independent of the gallery below it. The gallery itself
+                (ParallaxGallery) keeps its original up(0.42)/amount:0.4
+                trigger untouched; only this heading now appears as soon as
+                it scrolls into view instead of waiting on that same
+                threshold, which used to make it feel just as delayed as the
+                much-taller gallery beneath it. */}
+            <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.05 }}
+                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                style={{ position: 'relative', zIndex: 10, maxWidth: '1180px', margin: '5rem auto 0' }}
+            >
+                <p className="font-display" style={{
+                    textAlign: 'center', fontSize: '1rem', fontStyle: 'italic', fontWeight: 300,
+                    color: 'var(--pearl-dim)', marginBottom: '0.25rem',
+                }}>
+                    moments that stay with me
+                </p>
+                <h3 className="font-display" style={{
+                    textAlign: 'center', fontSize: 'clamp(1rem, 1.6vw, 1.3rem)', fontWeight: 300,
+                    textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--pearl-dim)', marginBottom: '1.75rem',
+                }}>
+                    Things I Love
+                </h3>
+            </motion.div>
+
+            {/* Scroll-parallax image gallery — unchanged from before */}
+            <motion.div {...up(0.42)} style={{ position: 'relative', zIndex: 10, maxWidth: '1180px', margin: '0 auto' }}>
                 <ParallaxGallery />
             </motion.div>
 

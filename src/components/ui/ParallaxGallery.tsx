@@ -80,19 +80,6 @@ export default function ParallaxGallery() {
 
     return (
         <div ref={outerRef} style={{ position: 'relative', width: '100%' }}>
-            <p className="font-display" style={{
-                textAlign: 'center', fontSize: '1rem', fontStyle: 'italic', fontWeight: 300,
-                color: 'var(--pearl-dim)', marginBottom: '0.25rem',
-            }}>
-                moments that stay with me
-            </p>
-            <h3 className="font-display" style={{
-                textAlign: 'center', fontSize: 'clamp(1rem, 1.6vw, 1.3rem)', fontWeight: 300,
-                textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--pearl-dim)', marginBottom: '1.75rem',
-            }}>
-                Things I Love
-            </h3>
-
             {useParallax ? (
                 <ParallaxLayout
                     containerRef={containerRef}
