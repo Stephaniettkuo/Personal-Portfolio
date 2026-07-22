@@ -47,16 +47,30 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img3.jpg', caption: 'crochet?',
+        src: '/images/photos/gallery/panda.jpeg', caption: 'friends',
         slides: [
-            { src: '/images/photos/gallery/jellyfish1.jpg', caption: 'ocean: jellyfish!! (my fav)' },
-            { src: '/images/photos/gallery/aquarium.jpeg', caption: 'ocean: aquarium I' },
-            { src: '/images/photos/gallery/ocean.jpeg', caption: 'ocean: aquarium II' },
-            { src: '/images/photos/gallery/biolum.jpg', caption: 'ocean: bioluminescence' },
+            { src: '/images/photos/gallery/friend0.jpeg', caption: 'friends: first best friend (my sister)' },
+            { src: '/images/photos/gallery/friend7.jpeg', caption: 'friends: @austin, tx' },
+            { src: '/images/photos/gallery/friend12.jpeg', caption: 'friends: @austin, tx' },
+            { src: '/images/photos/gallery/friend2.jpeg', caption: 'friends: @austin, tx' },
+            { src: '/images/photos/gallery/friend3.jpeg', caption: 'friends: @austin, tx' },
+            { src: '/images/photos/gallery/friend14.jpeg', caption: 'friends: @austin, tx' },
+            { src: '/images/photos/gallery/friend4.jpeg', caption: 'friends: @austin, tx' },
+            { src: '/images/photos/gallery/friend6.jpeg', caption: 'friends: @austin, tx' },
+            { src: '/images/photos/gallery/friend1.jpeg', caption: 'friends: @austin, tx' },
+            { src: '/images/photos/gallery/friend11.jpeg', caption: 'friends: @austin, tx' },
+            { src: '/images/photos/gallery/friend15.jpeg', caption: 'friends: @austin, tx' },
+            { src: '/images/photos/gallery/friend16.jpeg', caption: 'friends: @el paso & austin, tx' },
+            { src: '/images/photos/gallery/friend13.jpeg', caption: 'friends: @el paso, tx' },
+            { src: '/images/photos/gallery/friend5.jpeg', caption: 'friends: @el paso, tx' },
+            { src: '/images/photos/gallery/friend9.jpeg', caption: 'friends: @el paso, tx' },
+            { src: '/images/photos/gallery/friend17.jpeg', caption: 'friends: @el paso, tx' },
+            { src: '/images/photos/gallery/panda.jpeg', caption: 'friends: my panda' },
         ],
     },
+    
     {
-        src: '/images/gallery/img4.jpg', caption: '?',
+        src: '/images/gallery/img4.jpg', caption: '?aesthetic?',
         slides: [
             { caption: 'PLACEHOLDER — slide 1: mid-project' },
             { caption: 'PLACEHOLDER — slide 2: the finished result' },
@@ -69,14 +83,18 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { caption: 'PLACEHOLDER — slide 2: why they matter' },
         ],
     },
+    
     {
-        src: '/images/gallery/img6.jpg', caption: 'friends',
+        src: '/images/gallery/img3.jpg', caption: 'crochet?',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: the trail up' },
-            { caption: 'PLACEHOLDER — slide 2: the view from the top' },
-            { caption: 'PLACEHOLDER — slide 3: the way back down' },
+            { src: '/images/photos/gallery/jellyfish1.jpg', caption: 'ocean: jellyfish!! (my fav)' },
+            { src: '/images/photos/gallery/aquarium.jpeg', caption: 'ocean: aquarium I' },
+            { src: '/images/photos/gallery/ocean.jpeg', caption: 'ocean: aquarium II' },
+            { src: '/images/photos/gallery/biolum.jpg', caption: 'ocean: bioluminescence' },
         ],
     },
+
+
     {
         src: '/images/photos/gallery/photography.jpeg', caption: 'photography',
         slides: [
@@ -112,7 +130,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img11.jpg', caption: '?',
+        src: '/images/gallery/img11.jpg', caption: '?sport?',
         slides: [
             { caption: 'PLACEHOLDER — slide 1: where I first heard it' },
             { caption: 'PLACEHOLDER — slide 2: why it stuck' },
