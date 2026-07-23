@@ -31,6 +31,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     {
         src: '/images/photos/gallery/music1.jpeg', caption: 'music',
         slides: [
+            { src: '/images/photos/gallery/music1.jpeg', caption: 'music' },
             { src: '/images/photos/gallery/guitarr.jpg', caption: 'music: playing guitar (1yr)' },
             { src: '/images/photos/gallery/flutee.jpg', caption: 'music: playing flute (8yr)' },
             { src: '/images/photos/gallery/piano.jpg', caption: 'music: playing piano (12yr)' },
@@ -40,6 +41,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     {
         src: '/images/photos/gallery/ocean.png', caption: 'ocean',
         slides: [
+            { src: '/images/photos/gallery/ocean.png', caption: 'ocean' },
             { src: '/images/photos/gallery/jellyfish1.jpeg', caption: 'ocean: jellyfish!! (my fav)' },
             { src: '/images/photos/gallery/aquarium.jpeg', caption: 'ocean: aquarium I' },
             { src: '/images/photos/gallery/ocean.jpeg', caption: 'ocean: aquarium II' },
@@ -49,6 +51,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     {
         src: '/images/photos/gallery/panda.jpeg', caption: 'friends',
         slides: [
+            { src: '/images/photos/gallery/panda.jpeg', caption: 'friends' },
             { src: '/images/photos/gallery/friend0.jpeg', caption: 'friends: first best friend (my sister)' },
             { src: '/images/photos/gallery/friend7.jpeg', caption: 'friends: @austin, tx' },
             { src: '/images/photos/gallery/friend12.jpeg', caption: 'friends: @austin, tx' },
@@ -65,7 +68,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/friend5.jpeg', caption: 'friends: @el paso, tx' },
             { src: '/images/photos/gallery/friend9.jpeg', caption: 'friends: @el paso, tx' },
             { src: '/images/photos/gallery/friend17.jpeg', caption: 'friends: @el paso, tx' },
-            { src: '/images/photos/gallery/panda.jpeg', caption: 'friends: my panda' },
         ],
     },
     
@@ -98,6 +100,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     {
         src: '/images/photos/gallery/photography.jpeg', caption: 'photography',
         slides: [
+            { src: '/images/photos/gallery/photography.jpeg', caption: 'photography' },
             { src: '/images/photos/gallery/volunteer.jpeg', caption: 'photography: volunteer photographer' },
             { src: '/images/photos/gallery/ut.jpeg', caption: 'photography: burnt orange moon' },
             { src: '/images/photos/gallery/lake.jpeg', caption: 'photography: ladybird lake' },
@@ -110,6 +113,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     {
         src: '/images/photos/gallery/travel.jpeg', caption: 'traveling',
         slides: [
+            { src: '/images/photos/gallery/travel.jpeg', caption: 'traveling' },
             { src: '/images/photos/gallery/boat.jpeg', caption: 'travel: by boat (suzhou, china)' },
             { src: '/images/photos/gallery/bus.jpeg', caption: 'travel: by bus (jiangxi, china)' },
             { src: '/images/photos/gallery/bike.jpeg', caption: 'travel: by bike (xinwu, taiwan) ' },
@@ -177,6 +181,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     {
         src: '/images/photos/gallery/fam3.jpeg', caption: 'family',
         slides: [
+            { src: '/images/photos/gallery/fam3.jpeg', caption: 'family' },
             { src: '/images/photos/gallery/fam.jpeg', caption: 'family: I' },
             { src: '/images/photos/gallery/fam1.jpeg', caption: 'family: II' },
             { src: '/images/photos/gallery/fam4.jpeg', caption: 'family: III' },
@@ -205,10 +210,25 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img18.jpg', caption: 'creating',
+        src: '/images/photos/gallery/artcover.jpeg', caption: 'arts & craft',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: where I notice it most' },
-            { caption: 'PLACEHOLDER — slide 2: why it feels like me' },
+            { src: '/images/photos/gallery/paint3.jpeg', caption: 'arts & craft: 10 min jellyfish' },
+            { src: '/images/photos/gallery/paint.jpeg', caption: 'arts & craft: paint with family' },
+            { src: '/images/photos/gallery/paint1.jpeg', caption: 'arts & craft: spongebob painting' },
+            { src: '/images/photos/gallery/paint2.jpeg', caption: 'arts & craft: nature challenge' },
+            { src: '/images/photos/gallery/paint4.jpeg', caption: 'arts & craft: carousel' },
+            { src: '/images/photos/gallery/art.jpeg', caption: 'arts & craft: scratch art' },
+            { src: '/images/photos/gallery/art1.jpeg', caption: 'arts & craft: recycled material chinese fan' },
+            { src: '/images/photos/gallery/art2.jpeg', caption: 'arts & craft: color pencil lion dance' },
+            { src: '/images/photos/gallery/poster.jpeg', caption: 'arts & craft: poster for fundraiser' },
+            { src: '/images/photos/gallery/poster1.jpeg', caption: 'arts & craft: poster for promoting' },
+            { src: '/images/photos/gallery/crochet.jpeg', caption: 'arts & craft: crochet bunny' },
+            { src: '/images/photos/gallery/crochet1.jpeg', caption: 'arts & craft: crochet bear' },
+            { src: '/images/photos/gallery/3d.jpeg', caption: 'arts & craft: 3d printed name tag' },
+            { src: '/images/photos/gallery/nail.jpeg', caption: 'arts & craft: nail I' },
+            { src: '/images/photos/gallery/nail1.jpeg', caption: 'arts & craft: nail II' },
+            { src: '/images/photos/gallery/nail3.jpeg', caption: 'arts & craft: nail III' },
+
         ],
     },
     {
