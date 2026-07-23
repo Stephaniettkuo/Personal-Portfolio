@@ -87,7 +87,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     },
     
     {
-        src: '/images/gallery/img3.jpg', caption: 'crochet?',
+        src: '/images/gallery/img3.jpg', caption: 'cs?',
         slides: [
             { src: '/images/photos/gallery/jellyfish1.jpg', caption: 'ocean: jellyfish!! (my fav)' },
             { src: '/images/photos/gallery/aquarium.jpeg', caption: 'ocean: aquarium I' },
@@ -172,10 +172,16 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img14.jpg', caption: 'cs',
+        src: '/images/photos/gallery/coffee.jpeg', caption: 'coffee',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: what it looks like outside' },
-            { caption: 'PLACEHOLDER — slide 2: what I do when it happens' },
+            { src: '/images/photos/gallery/coffee.jpeg', caption: 'coffee: I'},
+            { src: '/images/photos/gallery/coffee2.jpeg', caption: 'coffee: II'},
+            { src: '/images/photos/gallery/coffee1.jpeg', caption: 'coffee: III'},
+            { src: '/images/photos/gallery/coffee4.jpeg', caption: 'coffee: IV'},
+            { src: '/images/photos/gallery/coffee5.jpeg', caption: 'coffee: V'},
+            { src: '/images/photos/gallery/coffee6.jpeg', caption: 'coffee: IV'},
+            { src: '/images/photos/gallery/coffee7.jpeg', caption: 'coffee: IIV'},
+            
         ],
     },
     {
@@ -228,6 +234,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/nail.jpeg', caption: 'arts & craft: nail I' },
             { src: '/images/photos/gallery/nail1.jpeg', caption: 'arts & craft: nail II' },
             { src: '/images/photos/gallery/nail3.jpeg', caption: 'arts & craft: nail III' },
+            { src: '/images/photos/gallery/design.jpeg', caption: 'arts & craft: t-shirt design' },
 
         ],
     },
