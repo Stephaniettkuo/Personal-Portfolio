@@ -87,30 +87,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     },
     
     {
-        src: '/images/gallery/img3.jpg', caption: 'cs?',
-        slides: [
-            { src: '/images/photos/gallery/jellyfish1.jpg', caption: 'ocean: jellyfish!! (my fav)' },
-            { src: '/images/photos/gallery/aquarium.jpeg', caption: 'ocean: aquarium I' },
-            { src: '/images/photos/gallery/ocean.jpeg', caption: 'ocean: aquarium II' },
-            { src: '/images/photos/gallery/biolum.jpg', caption: 'ocean: bioluminescence' },
-        ],
-    },
-
-
-    {
-        src: '/images/photos/gallery/photography.jpeg', caption: 'photography',
-        slides: [
-            { src: '/images/photos/gallery/photography.jpeg', caption: 'photography' },
-            { src: '/images/photos/gallery/volunteer.jpeg', caption: 'photography: volunteer photographer' },
-            { src: '/images/photos/gallery/ut.jpeg', caption: 'photography: burnt orange moon' },
-            { src: '/images/photos/gallery/lake.jpeg', caption: 'photography: ladybird lake' },
-            { src: '/images/photos/gallery/moon.jpeg', caption: 'photography: moon' },
-            { src: '/images/photos/gallery/snow.jpeg', caption: 'photography: snow day' },
-            { src: '/images/photos/gallery/squirrel.jpeg', caption: 'photography: albino squirrel' },
-            { src: '/images/photos/gallery/bird.jpeg', caption: 'photography: birds' },
-        ],
-    },
-    {
         src: '/images/photos/gallery/travel.jpeg', caption: 'traveling',
         slides: [
             { src: '/images/photos/gallery/travel.jpeg', caption: 'traveling' },
@@ -134,6 +110,38 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/train.jpeg', caption: 'travel: for fun, memories, and learning - many more to come :P' },
         ],
     },
+    
+
+
+    {
+        src: '/images/photos/gallery/photography.jpeg', caption: 'photography',
+        slides: [
+            { src: '/images/photos/gallery/photography.jpeg', caption: 'photography' },
+            { src: '/images/photos/gallery/volunteer.jpeg', caption: 'photography: volunteer photographer' },
+            { src: '/images/photos/gallery/ut.jpeg', caption: 'photography: burnt orange moon' },
+            { src: '/images/photos/gallery/lake.jpeg', caption: 'photography: ladybird lake' },
+            { src: '/images/photos/gallery/moon.jpeg', caption: 'photography: moon' },
+            { src: '/images/photos/gallery/snow.jpeg', caption: 'photography: snow day' },
+            { src: '/images/photos/gallery/squirrel.jpeg', caption: 'photography: albino squirrel' },
+            { src: '/images/photos/gallery/bird.jpeg', caption: 'photography: birds' },
+        ],
+    },
+    
+
+
+
+{
+        src: '/images/gallery/img3.jpg', caption: 'sport?',
+        slides: [
+            { src: '/images/photos/gallery/jellyfish1.jpg', caption: 'ocean: jellyfish!! (my fav)' },
+            { src: '/images/photos/gallery/aquarium.jpeg', caption: 'ocean: aquarium I' },
+            { src: '/images/photos/gallery/ocean.jpeg', caption: 'ocean: aquarium II' },
+            { src: '/images/photos/gallery/biolum.jpg', caption: 'ocean: bioluminescence' },
+        ],
+    },
+
+
+
     {
         src: '/images/gallery/img9.jpg', caption: '?',
         slides: [
@@ -164,11 +172,18 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img13.jpg', caption: 'learning',
+        src: '/images/photos/gallery/cs1.jpeg', caption: 'computer science',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: their favorite spot' },
-            { caption: 'PLACEHOLDER — slide 2: being silly' },
-            { caption: 'PLACEHOLDER — slide 3: a quiet moment together' },
+            { src: '/images/photos/gallery/utcs.jpeg', caption: 'cs: love utcs'},
+            { src: '/images/photos/gallery/community.jpeg', caption: 'cs: love cs community'},
+            { src: '/images/photos/gallery/glasses2.jpeg', caption: 'cs: love cs fit'},
+            { src: '/images/photos/gallery/friends.jpeg', caption: 'cs: love cs friends'},
+            { src: '/images/photos/gallery/errors.jpeg', caption: 'cs: love cs fails'},
+            { src: '/images/photos/gallery/pass.jpeg', caption: 'cs: love cs passes'},
+            { src: '/images/photos/gallery/notes.jpeg', caption: 'cs: love cs for making me a more competent notetaker'},
+            { src: '/images/photos/gallery/learn.jpeg', caption: 'cs: love cs for teaching me sooo many things'},
+            { src: '/images/photos/gallery/learn1.jpeg', caption: 'cs: love cs for letting me know I can survive through struggles'},
+            { src: '/images/photos/gallery/career.jpeg', caption: 'cs: love cs for training me to become a better student, teammate, person, developer, programmer ...'},
         ],
     },
     {
@@ -208,7 +223,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img17.jpg', caption: 'coffee',
+        src: '/images/gallery/img17.jpg', caption: 'baking',
         slides: [
             { caption: 'PLACEHOLDER — slide 1: where I stayed' },
             { caption: 'PLACEHOLDER — slide 2: the best day of the trip' },
@@ -234,15 +249,20 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/nail.jpeg', caption: 'arts & craft: nail I' },
             { src: '/images/photos/gallery/nail1.jpeg', caption: 'arts & craft: nail II' },
             { src: '/images/photos/gallery/nail3.jpeg', caption: 'arts & craft: nail III' },
+            { src: '/images/photos/gallery/clay.jpeg', caption: 'arts & craft: clay' },
             { src: '/images/photos/gallery/design.jpeg', caption: 'arts & craft: t-shirt design' },
 
         ],
     },
     {
-        src: '/images/gallery/img19.jpg', caption: 'orgs',
+        src: '/images/photos/gallery/orgs.jpeg', caption: 'organizations',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: where it comes from' },
-            { caption: 'PLACEHOLDER — slide 2: what it reminds me of' },
+            { src: '/images/photos/gallery/acm.jpeg', caption: 'orgs: acm (association of computing machinery)' },
+            { src: '/images/photos/gallery/acm2.jpeg', caption: 'orgs: acm II' },
+            { src: '/images/photos/gallery/csa.jpeg', caption: 'orgs: chinese student association' },
+            { src: '/images/photos/gallery/csa2.jpeg', caption: 'orgs: csa II' },
+            { src: '/images/photos/gallery/roadshow.jpeg', caption: 'orgs: cs roadshow' },
+            { src: '/images/photos/gallery/orgs.jpeg', caption: 'orgs: in others but have no pictures yet' },
         ],
     },
    
