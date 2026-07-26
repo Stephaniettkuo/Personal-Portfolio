@@ -116,10 +116,7 @@ export default function Hero() {
             onMouseMove={handlePointerMove}
             style={{ position: 'relative', width: '100%', height: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}
         >
-            {/*
-        PUT YOUR GENERATED IMAGE IN: public/images/hero-bg.png
-        Then uncomment the line below and delete the gradient div beneath it
-      */}
+            
             <motion.img
                 src="/images/hero-bg.png" alt="" aria-hidden
                 style={{
@@ -251,7 +248,7 @@ export default function Hero() {
                             transition={{ duration: 0.3 }}
                         >
                             Developing in Progress
-                            <Sparkles size={13} style={{ color: 'var(--biolume-blue)' }} />
+                            <Sparkles size={20} style={{ color: 'var(--biolume-blue)' }} />
                         </motion.button>
                     </motion.div>
                 </div>

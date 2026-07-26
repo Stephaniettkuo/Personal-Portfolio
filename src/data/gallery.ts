@@ -43,6 +43,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         slides: [
             { src: '/images/photos/gallery/ocean.png', caption: 'ocean' },
             { src: '/images/photos/gallery/jellyfish1.jpeg', caption: 'ocean: jellyfish!! (my fav)' },
+            { src: '/images/photos/gallery/ocean11.jpeg', caption: 'ocean: aquarium + jellyfish' },
             { src: '/images/photos/gallery/aquarium.jpeg', caption: 'ocean: aquarium I' },
             { src: '/images/photos/gallery/ocean.jpeg', caption: 'ocean: aquarium II' },
             { src: '/images/photos/gallery/biolum.png', caption: 'ocean: bioluminescence' },
@@ -62,6 +63,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/friend1.jpeg', caption: 'friends: @austin, tx' },
             { src: '/images/photos/gallery/friend11.jpeg', caption: 'friends: @austin, tx' },
             { src: '/images/photos/gallery/friend15.jpeg', caption: 'friends: @austin, tx' },
+            { src: '/images/photos/gallery/friends11.jpeg', caption: 'friends: @austin, tx' },
             { src: '/images/photos/gallery/friend16.jpeg', caption: 'friends: @el paso & austin, tx' },
             { src: '/images/photos/gallery/friend13.jpeg', caption: 'friends: @el paso, tx' },
             { src: '/images/photos/gallery/friend5.jpeg', caption: 'friends: @el paso, tx' },
@@ -247,6 +249,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/crochet.jpeg', caption: 'arts & craft: crochet bunny' },
             { src: '/images/photos/gallery/crochet1.jpeg', caption: 'arts & craft: crochet bear' },
             { src: '/images/photos/gallery/3d.jpeg', caption: 'arts & craft: 3d printed name tag' },
+            { src: '/images/photos/gallery/craft0.jpeg', caption: 'arts & craft: resin jellyfish' },
             { src: '/images/photos/gallery/nail.jpeg', caption: 'arts & craft: nail I' },
             { src: '/images/photos/gallery/nail1.jpeg', caption: 'arts & craft: nail II' },
             { src: '/images/photos/gallery/nail3.jpeg', caption: 'arts & craft: nail III' },

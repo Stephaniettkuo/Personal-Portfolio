@@ -13,7 +13,7 @@ interface Sparkle {
     star: boolean;   // 4-pointed star instead of a circle
 }
 
-const SPARKLE_COUNT = 50;
+const SPARKLE_COUNT = 60;
 const STAR_CLIP = 'polygon(50% 0%, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%)';
 
 function generateSparkles(): Sparkle[] {

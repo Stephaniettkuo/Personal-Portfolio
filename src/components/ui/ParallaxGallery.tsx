@@ -229,7 +229,27 @@ function TileItem({
     columns: number;
     onSelect: (index: number) => void;
 }) {
+    // Doubles as "is the scrim/caption revealed" for both input styles:
+    // real mouse hover sets it via onMouseEnter, and on a touchscreen (which
+    // has no hover at all) the first tap reveals it instead of opening the
+    // lightbox immediately — a second tap while already revealed then opens
+    // it, the standard touch equivalent of "hover, then click".
     const [hovered, setHovered] = useState(false);
+
+    // Shared by onClick and onTouchEnd so the gate can't be bypassed if a
+    // touch device's synthetic click (the "ghost click" browsers fire after
+    // a real touchend) isn't fully suppressed — both handlers read the same
+    // `hovered` closure value from before either state update commits, so a
+    // double-fire in that edge case just calls setHovered(true) twice
+    // (harmless) rather than one of them slipping through to onSelect on
+    // the very first tap.
+    const activate = () => {
+        if (hovered) {
+            onSelect(index);
+        } else {
+            setHovered(true);
+        }
+    };
 
     return (
         <div
@@ -237,7 +257,7 @@ function TileItem({
             tabIndex={0}
             data-cursor-hover
             aria-label={`View: ${item.caption.replace(/^PLACEHOLDER — /, '')}`}
-            onClick={() => onSelect(index)}
+            onClick={activate}
             onKeyDown={e => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -246,6 +266,14 @@ function TileItem({
             }}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
+            onTouchEnd={e => {
+                // Stops the browser from also firing its own synthetic
+                // click a moment after this touch — without it, that ghost
+                // click would immediately open the lightbox right after the
+                // tap we just used to reveal the caption, skipping the peek.
+                e.preventDefault();
+                activate();
+            }}
             style={{
                 flex: `0 0 calc(${100 / columns}% - 0.5rem)`,
                 aspectRatio: '3 / 4',
