@@ -57,7 +57,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/friend12.jpeg', caption: 'friends: @austin, tx' },
             { src: '/images/photos/gallery/friend2.jpeg', caption: 'friends: @austin, tx' },
             { src: '/images/photos/gallery/friend3.jpeg', caption: 'friends: @austin, tx' },
-            { src: '/images/photos/gallery/friend14.jpeg', caption: 'friends: @austin, tx' },
             { src: '/images/photos/gallery/friend4.jpeg', caption: 'friends: @austin, tx' },
             { src: '/images/photos/gallery/friend6.jpeg', caption: 'friends: @austin, tx' },
             { src: '/images/photos/gallery/friend1.jpeg', caption: 'friends: @austin, tx' },
@@ -70,7 +69,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/friend17.jpeg', caption: 'friends: @el paso, tx' },
         ],
     },
-    
     {
         src: '/images/gallery/img4.jpg', caption: '?aesthetic?',
         slides: [
@@ -79,13 +77,12 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img5.jpg', caption: '?',
+        src: '/images/gallery/img5.jpg', caption: 'sport?',
         slides: [
             { caption: 'PLACEHOLDER — slide 1: a favorite memory together' },
             { caption: 'PLACEHOLDER — slide 2: why they matter' },
         ],
     },
-    
     {
         src: '/images/photos/gallery/travel.jpeg', caption: 'traveling',
         slides: [
@@ -110,9 +107,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/train.jpeg', caption: 'travel: for fun, memories, and learning - many more to come :P' },
         ],
     },
-    
-
-
     {
         src: '/images/photos/gallery/photography.jpeg', caption: 'photography',
         slides: [
@@ -126,22 +120,25 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/bird.jpeg', caption: 'photography: birds' },
         ],
     },
-    
-
-
-
-{
-        src: '/images/gallery/img3.jpg', caption: 'sport?',
+    {
+        src: '/images/photos/gallery/hcover.jpeg', caption: 'hangyodon',
         slides: [
-            { src: '/images/photos/gallery/jellyfish1.jpg', caption: 'ocean: jellyfish!! (my fav)' },
-            { src: '/images/photos/gallery/aquarium.jpeg', caption: 'ocean: aquarium I' },
-            { src: '/images/photos/gallery/ocean.jpeg', caption: 'ocean: aquarium II' },
-            { src: '/images/photos/gallery/biolum.jpg', caption: 'ocean: bioluminescence' },
+            { src: '/images/photos/gallery/hcover.jpeg', caption: 'hangyodon: aka "ugly fish" in china' },
+            { src: '/images/photos/gallery/h3.jpeg', caption: 'hangyodon: underrated sanio character' },
+            { src: '/images/photos/gallery/h4.jpeg', caption: 'hangyodon: ugly but cute' },
+            { src: '/images/photos/gallery/h13.jpeg', caption: 'hangyodon: same I' },
+            { src: '/images/photos/gallery/h7.jpeg', caption: 'hangyodon: same II' },
+            { src: '/images/photos/gallery/h8.jpeg', caption: 'hangyodon: hopefully same III' },
+            { src: '/images/photos/gallery/h9.jpeg', caption: 'hangyodon: same IV' },
+            { src: '/images/photos/gallery/h10.jpeg', caption: 'hangyodon: same V' },
+            { src: '/images/photos/gallery/h11.jpeg', caption: 'hangyodon: same VI' },
+            { src: '/images/photos/gallery/h15.jpeg', caption: 'hangyodon: same VII' },
+            { src: '/images/photos/gallery/h2.jpeg', caption: 'hangyodon: same VIII' },
+            { src: '/images/photos/gallery/h20.jpeg', caption: 'hangyodon: phone' },
+            { src: '/images/photos/gallery/h1.jpeg', caption: 'hangyodon: :)' },
+           
         ],
     },
-
-
-
     {
         src: '/images/gallery/img9.jpg', caption: '?',
         slides: [
@@ -165,10 +162,14 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img12.jpg', caption: 'robotics',
+        src: '/images/photos/gallery/hi3.jpeg', caption: 'hirono',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: how I remember it' },
-            { caption: 'PLACEHOLDER — slide 2: how it looks now' },
+            { src: '/images/photos/gallery/hi3.jpeg', caption: 'hirono: blindbox character' },
+            { src: '/images/photos/gallery/hi1.jpeg', caption: 'hirono: cute' },
+            { src: '/images/photos/gallery/hi2.jpeg', caption: 'hirono: sleepy' },
+            { src: '/images/photos/gallery/hi5.jpeg', caption: 'hirono: coffee' },
+            { src: '/images/photos/gallery/hi6.jpeg', caption: 'hirono: chill' },
+            { src: '/images/photos/gallery/hi7.jpeg', caption: 'hirono: panda' },
         ],
     },
     {
@@ -194,8 +195,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/coffee1.jpeg', caption: 'coffee: III'},
             { src: '/images/photos/gallery/coffee4.jpeg', caption: 'coffee: IV'},
             { src: '/images/photos/gallery/coffee5.jpeg', caption: 'coffee: V'},
-            { src: '/images/photos/gallery/coffee6.jpeg', caption: 'coffee: IV'},
-            { src: '/images/photos/gallery/coffee7.jpeg', caption: 'coffee: IIV'},
+            { src: '/images/photos/gallery/coffee6.jpeg', caption: 'coffee: VI'},
+            { src: '/images/photos/gallery/coffee7.jpeg', caption: 'coffee: VII'},
             
         ],
     },
@@ -216,18 +217,23 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img16.jpg', caption: 'characters',
+        src: '/images/photos/gallery/rob.jpeg', caption: 'robotics',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: starting out' },
-            { caption: 'PLACEHOLDER — slide 2: where I am now' },
+            { src: '/images/photos/gallery/rob5.jpeg', caption: 'robotics'},
+            { src: '/images/photos/gallery/rob3.jpeg', caption: 'robotics'},
+            { src: '/images/photos/gallery/rob1.jpeg', caption: 'robotics'},
+            { src: '/images/photos/gallery/rob2.jpeg', caption: 'robotics'},
+            { src: '/images/photos/gallery/rob6.jpeg', caption: 'robotics'},
+            { src: '/images/photos/gallery/rob8.jpeg', caption: 'robotics'},
         ],
     },
     {
-        src: '/images/gallery/img17.jpg', caption: 'baking',
+        src: '/images/photos/gallery/bad4.jpeg', caption: 'badminton',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: where I stayed' },
-            { caption: 'PLACEHOLDER — slide 2: the best day of the trip' },
-            { caption: 'PLACEHOLDER — slide 3: what I’d do again' },
+            { src: '/images/photos/gallery/bad4.jpeg', caption: 'badminton: I' },
+            { src: '/images/photos/gallery/bad1.jpeg', caption: 'badminton: II' },
+            { src: '/images/photos/gallery/bad2.jpeg', caption: 'badminton: III' },
+            { src: '/images/photos/gallery/bad3.jpeg', caption: 'badminton: IV' },
         ],
     },
     {
@@ -267,3 +273,4 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     },
    
 ];
+// stargazing, baking, aesthetics, fruits, sports, journaling, hirono, jellyfish, robotics

@@ -19,27 +19,9 @@ const smoothstep = (t: number) => t * t * (3 - 2 * t);
 export default function JellyfishOrb() {
     const videoRef = useRef<HTMLVideoElement>(null);
     const fadeRef = useRef<HTMLDivElement>(null);
-    // Starts true so server and the first client render agree — the real
-    // check happens post-mount, same reasoning as the hydration fixes
-    // elsewhere in this codebase (CustomCursor, Journey's isDesktop, etc.).
-    const [show, setShow] = useState(true);
     // No poster asset exists yet, so a missing/broken video source falls back
     // to a decorative gradient instead of a blank or broken circle.
     const [hasError, setHasError] = useState(false);
-
-    useEffect(() => {
-        // Coordinated with Hero's layout: below this width the text + orb no
-        // longer comfortably fit side by side, so rather than letting them wrap
-        // onto separate rows (or worse, squeeze together), the orb disappears
-        // entirely and the text becomes centered on its own — see Hero.tsx.
-        // Also matches the Navbar's own hamburger-collapse breakpoint, so the
-        // whole page shifts into "compact mode" at one consistent width.
-        const mq = window.matchMedia('(max-width: 1024px)');
-        const update = () => setShow(!mq.matches);
-        update();
-        mq.addEventListener('change', update);
-        return () => mq.removeEventListener('change', update);
-    }, []);
 
     useEffect(() => {
         const video = videoRef.current;
@@ -83,16 +65,17 @@ export default function JellyfishOrb() {
         return () => cancelAnimationFrame(rafId);
     }, []);
 
-    if (!show) return null;
-
     return (
         <div
             aria-hidden
             style={{
-                // A normal flex child now (Hero.tsx renders this as a sibling of
-                // the text block, in a justifyContent:'center' row), not
-                // absolutely positioned — that's what makes the text-to-left-edge
-                // and orb-to-right-edge gaps end up equal automatically.
+                // A normal flex child (Hero.tsx renders this as a sibling of
+                // the text block, in a justifyContent:'center', flexWrap:'wrap'
+                // row) — not absolutely positioned. On wide screens that makes
+                // the text-to-left-edge and orb-to-right-edge gaps end up equal
+                // automatically; on narrow screens, the same flex-wrap just
+                // reflows the orb onto its own centered row below the text
+                // instead of hiding it.
                 flexShrink: 0,
                 position: 'relative',
                 zIndex: 5,

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -42,6 +42,13 @@ export default function Hero() {
     const [parallaxEnabled] = useState(
         () => typeof window !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
     );
+    // Starts false to match the server-rendered (desktop) output, corrected
+    // post-mount — same hydration-safe pattern used by Navbar's isCompact and
+    // JellyfishOrb's old show state. Same 1024px breakpoint as Navbar's own
+    // hamburger-collapse, so the whole page shifts into "compact mode"
+    // together. Only affects text alignment here — large-screen layout is
+    // untouched.
+    const [isCompact, setIsCompact] = useState(false);
 
     const mx = useMotionValue(0);
     const my = useMotionValue(0);
@@ -59,6 +66,14 @@ export default function Hero() {
     // (not a boolean) so repeated clicks each trigger a new burst even while
     // a previous one is still fading out.
     const [sparkleTrigger, setSparkleTrigger] = useState(0);
+
+    useEffect(() => {
+        const mq = window.matchMedia('(max-width: 1024px)');
+        const update = () => setIsCompact(mq.matches);
+        update();
+        mq.addEventListener('change', update);
+        return () => mq.removeEventListener('change', update);
+    }, []);
 
     const handlePointerMove = (e: React.MouseEvent<HTMLElement>) => {
         if (!parallaxEnabled || !sectionRef.current) return;
@@ -137,14 +152,14 @@ export default function Hero() {
             <OceanCanvas />
 
             {/* ── Main content ── */}
-            {/* justifyContent:'center' (not space-between) — the orb is now a
+            {/* justifyContent:'center' (not space-between) — the orb is a
                 real flex sibling of the text instead of being absolutely
-                positioned, so the two center as one group: the gap from the
-                viewport's left edge to the text equals the gap from the orb to
-                the right edge, automatically, at any width. When the orb hides
-                itself below 1024px (see JellyfishOrb.tsx), the text becomes the
-                only child and this same rule centers it alone — no separate
-                mobile-specific alignment override needed. */}
+                positioned, so on wide screens the two center as one group:
+                the gap from the viewport's left edge to the text equals the
+                gap from the orb to the right edge, automatically, at any
+                width. Below 1024px, flexWrap reflows the orb onto its own
+                row below the text instead of squeezing them side by side —
+                see JellyfishOrb.tsx, which no longer hides itself. */}
             <div style={{
                 position: 'relative', zIndex: 10, width: '100%', maxWidth: '1280px',
                 margin: '0 auto', padding: 'clamp(1.5rem, 6vw, 6rem)',
@@ -152,8 +167,9 @@ export default function Hero() {
                 flexWrap: 'wrap', gap: '2rem',
             }}>
 
-                {/* Left */}
-                <div style={{ flex: '1 1 320px', maxWidth: '560px' }}>
+                {/* Left — textAlign only switches to center below 1024px;
+                    large-screen layout is untouched. */}
+                <div style={{ flex: '1 1 320px', maxWidth: '560px', textAlign: isCompact ? 'center' : 'left' }}>
 
                     {/* hello i'm */}
                     <motion.p {...up(0.38)} className="font-display" style={{
@@ -168,6 +184,7 @@ export default function Hero() {
                         initial="initial" animate="animate" variants={nameContainer}
                         className="font-display" style={{
                             display: 'flex', flexWrap: 'wrap', gap: '0 0.4ch',
+                            justifyContent: isCompact ? 'center' : 'flex-start',
                             fontSize: 'clamp(2.6rem, 6.5vw, 4.8rem)', fontWeight: 300,
                             textTransform: 'uppercase', letterSpacing: '0.11em', lineHeight: 1,
                             color: 'var(--pearl)', marginBottom: '1.1rem',
@@ -194,6 +211,11 @@ export default function Hero() {
                         fontSize: '1.05rem', fontStyle: 'italic', fontWeight: 300,
                         lineHeight: 1.65, color: 'var(--pearl-faint)',
                         maxWidth: '370px', marginBottom: '2.2rem',
+                        // maxWidth narrows this below the parent's own width, so
+                        // centering the text inside it isn't enough — the box
+                        // itself needs centering within the parent too.
+                        marginLeft: isCompact ? 'auto' : undefined,
+                        marginRight: isCompact ? 'auto' : undefined,
                     }}>
                         diving into technology, design, and curiosity
                         <br />to build meaningful impact ;)
@@ -202,8 +224,10 @@ export default function Hero() {
                     {/* CTA — magnetic hover; click fires a HeroSparkleBurst
                         scattered across the whole section (rendered below,
                         not scoped to the button) rather than a burst
-                        localized to the button itself. */}
-                    <motion.div {...up(0.94)}>
+                        localized to the button itself. The button's own
+                        content-sized width means textAlign alone wouldn't
+                        center it as a block — needs its own flex centering. */}
+                    <motion.div {...up(0.94)} style={{ display: 'flex', justifyContent: isCompact ? 'center' : 'flex-start' }}>
                         <motion.button
                             data-cursor-hover
                             onMouseMove={handleBtnMove}

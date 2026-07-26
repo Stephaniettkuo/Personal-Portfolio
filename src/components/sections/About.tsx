@@ -153,8 +153,23 @@ export default function About() {
                 </h3>
             </motion.div>
 
-            {/* Scroll-parallax image gallery — unchanged from before */}
-            <motion.div {...up(0.42)} style={{ position: 'relative', zIndex: 10, maxWidth: '1180px', margin: '0 auto' }}>
+            {/* Scroll-parallax image gallery — explicit animation props (not
+                the shared up() helper) so amount can safely go lower than
+                0.4 here specifically. up()'s 0.4 requires 40% of THIS
+                element's own height to be visible at once; on the mobile
+                tile-grid fallback (now 19+ items tall, easily 2000px+ on a
+                narrow 2-column layout) that's taller than 2.5x a typical
+                phone viewport, so the maximum achievable intersection ratio
+                falls permanently below 40% — the gallery never faded in on
+                mobile at all. amount:0.2 keeps real margin regardless of how
+                many photos get added later. */}
+            <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.75, delay: 0.42, ease: [0.25, 0.1, 0.25, 1] }}
+                style={{ position: 'relative', zIndex: 10, maxWidth: '1180px', margin: '0 auto' }}
+            >
                 <ParallaxGallery />
             </motion.div>
 
