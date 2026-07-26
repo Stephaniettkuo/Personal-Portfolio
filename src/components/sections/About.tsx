@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -30,6 +31,20 @@ const EXPLORE_LINKS = [
 ];
 
 export default function About() {
+    // Starts false to match the server-rendered (desktop) output, corrected
+    // post-mount — same hydration-safe pattern as Hero's isCompact and
+    // Navbar's isCompact. Same 1024px breakpoint used everywhere else in the
+    // site, so it all shifts into "compact mode" together.
+    const [isCompact, setIsCompact] = useState(false);
+
+    useEffect(() => {
+        const mq = window.matchMedia('(max-width: 1024px)');
+        const update = () => setIsCompact(mq.matches);
+        update();
+        mq.addEventListener('change', update);
+        return () => mq.removeEventListener('change', update);
+    }, []);
+
     return (
         <section id="about" style={{ position: 'relative', width: '100%', padding: 'clamp(4rem, 10vw, 8rem) clamp(1.5rem, 6vw, 6rem)' }}>
             {/* Background photo — spans the entire section (not a bounded height),
@@ -68,8 +83,11 @@ export default function About() {
                     </GlassCard>
                 </motion.div>
 
-                {/* Right: bio + info card */}
-                <div style={{ flex: '1 1 360px', maxWidth: '560px' }}>
+                {/* Right: bio + info card — textAlign only switches to center
+                    below 1024px; large-screen layout is untouched. Inherits
+                    down to the "get to know" line, the heading, and the bio
+                    paragraphs below without needing to set it on each one. */}
+                <div style={{ flex: '1 1 360px', maxWidth: '560px', textAlign: isCompact ? 'center' : 'left' }}>
                     <motion.p {...up(0.1)} className="font-display" style={{
                         fontSize: '1.3rem', fontStyle: 'italic', fontWeight: 300,
                         color: 'var(--pearl-dim)', marginBottom: '0.4rem',

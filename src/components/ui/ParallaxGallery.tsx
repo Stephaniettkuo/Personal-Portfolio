@@ -112,7 +112,6 @@ function ParallaxLayout({
             style={{
                 position: 'relative', display: 'flex', gap: '1.5vw',
                 height: '210vh', overflow: 'hidden', borderRadius: '1.5rem',
-                border: '1px solid var(--glass-border)',
             }}
         >
             {COLUMNS.map((col, i) => (
@@ -191,12 +190,21 @@ function GalleryColumn({
 // item. flex-wrap + justifyContent:center (not CSS grid) so a partial last
 // row centers itself automatically instead of sticking to the left — grid
 // shares column tracks across every row and needs extra logic to do this.
+//
+// Skips items still captioned exactly '?' (not-yet-decided placeholders) —
+// filtering happens after pairing each item with its real GALLERY_ITEMS
+// index, not before, so the index passed to onSelect still points at the
+// right item for GalleryLightbox regardless of what got filtered out.
 function TileGrid({
     columns, onSelect,
 }: {
     columns: number;
     onSelect: (index: number) => void;
 }) {
+    const visibleItems = GALLERY_ITEMS
+        .map((item, index) => ({ item, index }))
+        .filter(({ item }) => item.caption !== '?');
+
     return (
         <div style={{
             display: 'flex',
@@ -205,9 +213,8 @@ function TileGrid({
             gap: '0.75rem',
             padding: '0.5rem',
             borderRadius: '1.5rem',
-            border: '1px solid var(--glass-border)',
         }}>
-            {GALLERY_ITEMS.map((item, index) => (
+            {visibleItems.map(({ item, index }) => (
                 <TileItem key={item.src} item={item} index={index} columns={columns} onSelect={onSelect} />
             ))}
         </div>
@@ -255,7 +262,7 @@ function TileItem({
             <div aria-hidden style={{
                 position: 'absolute', inset: 0,
                 background: 'rgba(4,16,31,0.58)',
-                opacity: hovered ? 0.2 : 1,
+                opacity: hovered ? 1 : 0,
                 transition: 'opacity 0.25s ease',
             }} />
 

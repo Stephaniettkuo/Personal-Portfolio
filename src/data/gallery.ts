@@ -70,17 +70,15 @@ export const GALLERY_ITEMS: GalleryItem[] = [
         ],
     },
     {
-        src: '/images/gallery/img4.jpg', caption: '?aesthetic?',
+        src: '/images/gallery/img4.jpg', caption: '?',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: mid-project' },
-            { caption: 'PLACEHOLDER — slide 2: the finished result' },
+            { caption: 'PLACEHOLDER — slide 1: placeholder' },
         ],
     },
     {
-        src: '/images/gallery/img5.jpg', caption: 'sport?',
+        src: '/images/gallery/img5.jpg', caption: '?',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: a favorite memory together' },
-            { caption: 'PLACEHOLDER — slide 2: why they matter' },
+            { caption: 'PLACEHOLDER — slide 1: placeholder' },
         ],
     },
     {
@@ -103,6 +101,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
             { src: '/images/photos/gallery/taipei.jpeg', caption: 'travel: see nature (taipei, taiwan zoo)' },
             { src: '/images/photos/gallery/nm.jpeg', caption: 'travel: see peculiarities (white sands national park, new mexico)' },
             { src: '/images/photos/gallery/granny.jpeg', caption: 'travel: with chinese granny tour group' },
+            { src: '/images/photos/gallery/travel11.jpeg', caption: 'travel: washington dc, usa' },
             { src: '/images/photos/gallery/hsinchu.jpeg', caption: 'travel: for peace (hsinchu, taiwan)' },
             { src: '/images/photos/gallery/train.jpeg', caption: 'travel: for fun, memories, and learning - many more to come :P' },
         ],
@@ -142,23 +141,19 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     {
         src: '/images/gallery/img9.jpg', caption: '?',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: how it starts' },
-            { caption: 'PLACEHOLDER — slide 2: why it matters to me' },
+           { caption: 'PLACEHOLDER — slide 1: placeholder' },
         ],
     },
     {
         src: '/images/gallery/img10.jpg', caption: '?',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: work in progress' },
-            { caption: 'PLACEHOLDER — slide 2: the finished piece' },
-            { caption: 'PLACEHOLDER — slide 3: what I learned making it' },
+            { caption: 'PLACEHOLDER — slide 1: placeholder' },
         ],
     },
     {
-        src: '/images/gallery/img11.jpg', caption: '?sport?',
+        src: '/images/gallery/img11.jpg', caption: '?',
         slides: [
-            { caption: 'PLACEHOLDER — slide 1: where I first heard it' },
-            { caption: 'PLACEHOLDER — slide 2: why it stuck' },
+           { caption: 'PLACEHOLDER — slide 1: placeholder' },
         ],
     },
     {
