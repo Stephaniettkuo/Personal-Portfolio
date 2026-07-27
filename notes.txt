@@ -17,7 +17,8 @@ for like my favoraite quotes or things as such
 7) have the navbar selection boxes at the end of each page
 8) that star and moon button at the top right corner of nav bar can do something 
 9) home, the about section is not centered when smaller screen
-
+10) add a pop up message that checks if its viewed on a smaller device, to tell them to check on
+are larger device too :P 
 
 journeys:
 

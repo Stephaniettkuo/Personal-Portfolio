@@ -93,13 +93,10 @@ export default function TimelineCard({
         return () => { observer.disconnect(); cancelAnimationFrame(raf); };
     }, [year]);
 
-    const restScale = highlight ? 1.04 : 1;
-
     return (
         <motion.div
             layout
-            animate={{ scale: restScale }}
-            whileHover={{ scale: restScale + 0.03 }}
+            whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             onClick={onExpand}
             data-cursor-hover={onExpand ? true : undefined}
@@ -115,7 +112,15 @@ export default function TimelineCard({
                 // the desktop expand into a tall, narrow column instead of a
                 // wide rectangle. Viewport width is always definite.
                 width: expanded ? 'min(420px, calc(100vw - 3rem))' : '280px',
-                minHeight: '320px', flexShrink: 0,
+                // Fixed (not min) when collapsed — every card reserves the
+                // exact same space for its title/description regardless of
+                // how much text they hold (see the line-clamp on both below),
+                // so collapsed cards are always identical, uniform boxes
+                // instead of each one growing to fit its own text length.
+                // 'auto' once expanded so the revealed full-story content can
+                // push the card taller.
+                height: expanded ? 'auto' : '320px',
+                flexShrink: 0,
                 cursor: onExpand ? 'pointer' : 'default',
             }}
         >
@@ -165,10 +170,25 @@ export default function TimelineCard({
                         )}
                     </div>
 
-                    <h3 style={{ fontSize: '0.95rem', fontWeight: 400, color: 'var(--pearl)', marginBottom: '0.4rem', letterSpacing: '0.01em' }}>
+                    <h3 style={{
+                        fontSize: '0.95rem', fontWeight: 400, color: 'var(--pearl)', marginBottom: '0.4rem', letterSpacing: '0.01em',
+                        // Clamped to 2 lines with a matching fixed height —
+                        // titles range from "Birth" to a full sentence, and
+                        // without this a long one would push the whole card
+                        // taller than its neighbors.
+                        height: '2.5rem', overflow: 'hidden',
+                        display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
+                    }}>
                         {title}
                     </h3>
-                    <p style={{ fontSize: '0.82rem', lineHeight: 1.65, color: 'var(--pearl-dim)', fontWeight: 300 }}>
+                    <p style={{
+                        fontSize: '0.82rem', lineHeight: 1.65, color: 'var(--pearl-dim)', fontWeight: 300,
+                        // Same fixed-height clamp as the title, for the same
+                        // reason — descriptions vary from one short sentence
+                        // to two full ones.
+                        height: '2.75rem', overflow: 'hidden',
+                        display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
+                    }}>
                         {description}
                     </p>
 

@@ -95,7 +95,7 @@ function MobileJourney() {
                     position: 'absolute', inset: 0,
                     background: 'linear-gradient(180deg, var(--ocean-void) 0%, rgba(4,16,31,0.35) 16%, rgba(4,16,31,0.35) 84%, var(--ocean-void) 100%)',
                 }} />
-                <OceanCanvas particleCount={40} bubbleCount={6} maxOpacity={0.55} />
+                <OceanCanvas particleCount={50} bubbleCount={50} maxOpacity={0.55} />
             </div>
 
             <div style={{
@@ -176,7 +176,6 @@ export default function Journey() {
     // no manually-computed wrapper height to keep in sync with anything.
     const sectionRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
-    const bgRef = useRef<HTMLDivElement>(null);
     const [isDesktop, setIsDesktop] = useState(false);
 
     // Only one card expanded at a time — lives here (not in each card) so
@@ -221,18 +220,6 @@ export default function Journey() {
         // way a value captured once in React state could.
         const getDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
 
-        // Background parallax is driven from this SAME ScrollTrigger's
-        // onUpdate (via gsap.set, not a second independent ScrollTrigger) —
-        // an earlier version created a separate ScrollTrigger on the exact
-        // same pinned trigger element for the background tween, and that
-        // turned out to never visibly move: a second ScrollTrigger sharing a
-        // pinned element's trigger/start/end doesn't reliably receive the
-        // same scroll updates as the one actually driving the pin. Reusing
-        // the one ScrollTrigger that's already proven to work (it's what
-        // drives sparkleProgress, which does move correctly) sidesteps that
-        // entirely. 1x the card speed — background pans at the same pace as
-        // the cards, not a slower "distant horizon" — matches the wrapper's
-        // width being sized to exactly this distance below.
         const st = ScrollTrigger.create({
             trigger: section,
             start: 'top top',
@@ -243,7 +230,6 @@ export default function Journey() {
             animation: gsap.to(track, { x: () => -getDistance(), ease: 'none' }),
             onUpdate: self => {
                 sparkleProgress.set(self.progress);
-                if (bgRef.current) gsap.set(bgRef.current, { x: -getDistance() * self.progress });
             },
             onRefresh: () => setScrollDistance(getDistance()),
         });
@@ -266,31 +252,10 @@ export default function Journey() {
                     position: 'relative', width: '100%', height: '100vh', overflow: 'hidden',
                 }}
             >
-                {/* Background — wider than the section and nudged left as you
-                    scroll at the same 1x pace as the cards (see the GSAP tween
-                    above), so it needs enough spare width to pan through the
-                    entire card-track distance without its edge ever coming
-                    into view: 120% of the viewport plus scrollDistance itself
-                    (the exact distance the tween pans), inset 10% on the left
-                    as a small cushion. Falls back to a flat 160% before the
-                    ScrollTrigger's first onRefresh populates scrollDistance.
-                    The section already has overflow:hidden on itself, so the
-                    overflow this wrapper creates clips cleanly without an
-                    extra div. The dark overlay lives INSIDE this wrapper (not
-                    as a separate sibling) so it pans together with the image
-                    instead of staying fixed over the viewport — it's part of
-                    the scene, not a static vignette on top of it. Sits under
-                    OceanCanvas/CurrentLines so the particle field stays
-                    exactly as it was. */}
-                <div
-                    ref={bgRef}
-                    className="journey-bg-parallax"
-                    aria-hidden
-                    style={{
-                        position: 'absolute', top: 0, bottom: 0, left: '-10%',
-                        width: scrollDistance > 0 ? `calc(120% + ${scrollDistance}px)` : '160%',
-                    }}
-                >
+                {/* Background — a plain still image, no scroll-driven motion.
+                    Sits under OceanCanvas/CurrentLines so the particle field
+                    stays exactly as it was. */}
+                <div aria-hidden style={{ position: 'absolute', inset: 0 }}>
                     <Image src={JOURNEY_BG_SRC} alt="" fill priority={false} style={{ objectFit: 'cover', opacity: 0.5 }} />
                     <div style={{
                         position: 'absolute', inset: 0,
