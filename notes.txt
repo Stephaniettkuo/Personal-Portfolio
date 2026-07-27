@@ -2,66 +2,42 @@ things to note
 
 
 
-4) theres that eye-looking icon in the background of the hero and i dont like it is there a way to get rid of it
 
 5) i want something to look like it popped out when you scroll to the next browser orrr
 from the hero, you can scroll to about me and then all the other pages are entered by clicking
 on buttons that are under the about me or on the top of the scroll bar thing
-6) basically, i just want the divider between pages (hero and about me) to have something 
-more interesting or animated
-8) journeys page looks a little small so far 
 9) for projects, i want those type of magnifying thing where when you hover, the 
 information becomes bigger and maybe if you click it some extra things happen
 11) for goals, i want the list thats there already and then also when you click on it,
 it shows you the progress of how things are going
-
-
-
-
-
-Types of animations ideas
-
-1) waves 
-2) bubbles
-3) jellyfish
-
-4) ohhh. ifff there ever is a load symbol, i want it to be a symbol 
-of a jellyfish circling around in one of those round tanks
-
-
-
-7) need to find background for all the other things
 12) some cool texts moving like those ads during sports games would be cute 
 for like my favoraite quotes or things as such
-13) something like a hero for all the other pages as well
-14) i want all the page options to be at the bottom of each page too
-1)under the gallery of about me, i want to add a carasoul or something and have pictures 
-of things i love (maybe have a simple map and have points of places i have been to)
-2) for my journeys page,  i want to have a horizontal scroll 
-3) when im click on about on navigation bar it says on home. i dont want that 
-4) i want the wave line in the journeys page slightly thicker  (and also get rid of the divider line between 
-the quote and navigation options)
 5) you know those ui folders thing, i think i can have one for each that opens up a gallery of pictures
-6) the whole gallery appears late
-7) when the screen side changes, the galley looks a bit wonky
-8) my glitters are now at the corner of the pages...  bruh
+6) combine project and achievement page
+7) have the navbar selection boxes at the end of each page
+8) that star and moon button at the top right corner of nav bar can do something 
+9) home, the about section is not centered when smaller screen
 
-pictures i need
 
-a lot og backround pictures
-mugshot
-guitar
-flute
-piano
-hangyodon
-jellyfish
-journaling
-photography
-CS (ig)
-traveling
-spending time with family/friends
-creating ___
-coffee
-food 
-badmingon/sport 
+journeys:
+
+
+
+
+- born in 2005
+- elementary (started robotics, band)
+- middle (started more leadership orgs??)
+- high school peak
+
+college
+- freshman
+- sophomore
+- junior
+    - summer website for this, acm, and gone to cs
+
+
+
+
+
+
 
